@@ -9,6 +9,9 @@ public class VelocityDamager : Damager {
     public float damageVelocity;
 
     private void OnCollisionEnter(Collision collision) {
+        // TODO: This isn't working
+        Debug.Log(collision.collider.name);
+
         if (collision.relativeVelocity.magnitude > damageVelocity) {
             // If the thing we're colliding with can take damage, then inflict it.
             Damagable damageable = collision.collider.GetComponent<Damagable>();
