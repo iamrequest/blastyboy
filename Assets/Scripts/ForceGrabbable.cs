@@ -32,14 +32,14 @@ public class ForceGrabbable : MonoBehaviour {
         }
     }
 
-    public void OnGrab(BlasterGrappler grappler) {
+    public virtual void OnGrab(BlasterGrappler grappler) {
         isGrabbed = true;
         m_pickupPosition = transform.position;
         rb.useGravity = false;
 
         onGrab.Invoke();
     }
-    public void OnRelease(BlasterGrappler grappler) {
+    public virtual void OnRelease(BlasterGrappler grappler) {
         isGrabbed = false;
         rb.useGravity = true;
 

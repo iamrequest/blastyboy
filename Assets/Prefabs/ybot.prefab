@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 3800994941757215309}
   - component: {fileID: 3800994941757215311}
   - component: {fileID: 3800994941757215310}
-  - component: {fileID: 3772551936847340598}
   m_Layer: 0
   m_Name: mixamorig:RightArm
   m_TagString: Untagged
@@ -108,7 +107,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.18760736, y: 0.0884449, z: -0.018953303}
+  m_ConnectedAnchor: {x: 0.18760736, y: 0.0884449, z: -0.018953362}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -142,28 +141,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3772551936847340598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64478924120023713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &441934694560185274
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,10 +217,8 @@ GameObject:
   - component: {fileID: 3800994940591733103}
   - component: {fileID: 3800994940591733096}
   - component: {fileID: 3800994940591733102}
-  - component: {fileID: 4436829759541826813}
-  - component: {fileID: 4436829759541826814}
   - component: {fileID: 4436829759541826815}
-  - component: {fileID: 3017817861265530273}
+  - component: {fileID: 1384913001310771341}
   m_Layer: 0
   m_Name: mixamorig:Head
   m_TagString: Untagged
@@ -308,7 +283,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000002708668, y: 0.2535432, z: 0.03935334}
+  m_ConnectedAnchor: {x: -0.00000028023823, y: 0.2535432, z: 0.03935328}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -342,82 +317,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4436829759541826813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661204419052589672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
---- !u!114 &4436829759541826814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661204419052589672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffefbea063cab884ca33e5a449e5c22c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachmentFlags: 44
-  attachmentOffset: {fileID: 0}
-  catchingSpeedThreshold: -1
-  releaseVelocityStyle: 1
-  releaseVelocityTimeOffset: -0.011
-  scaleReleaseVelocity: 1.1
-  scaleReleaseVelocityThreshold: -1
-  scaleReleaseVelocityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  restoreOriginalParent: 0
-  onPickUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDetachFromHand:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeldUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  interactable: {fileID: 0}
 --- !u!114 &4436829759541826815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +369,7 @@ MonoBehaviour:
   highlightOnHover: 1
   hideHighlight: []
   hoverPriority: 0
---- !u!114 &3017817861265530273
+--- !u!114 &1384913001310771341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,19 +378,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 661204419052589672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
+  m_Script: {fileID: 11500000, guid: ffefbea063cab884ca33e5a449e5c22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDamaged:
+  attachmentFlags: 36
+  attachmentOffset: {fileID: 0}
+  catchingSpeedThreshold: -1
+  releaseVelocityStyle: 1
+  releaseVelocityTimeOffset: -0.011
+  scaleReleaseVelocity: 1.1
+  scaleReleaseVelocityThreshold: -1
+  scaleReleaseVelocityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  restoreOriginalParent: 0
+  onPickUp:
     m_PersistentCalls:
       m_Calls: []
-  onHeathDepleted:
+  onDetachFromHand:
     m_PersistentCalls:
       m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
+  onHeldUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  interactable: {fileID: 0}
 --- !u!1 &679016723888449702
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +560,6 @@ GameObject:
   - component: {fileID: 3800994941674949509}
   - component: {fileID: 3800994941674949510}
   - component: {fileID: 3800994941674949508}
-  - component: {fileID: 4258945867136109994}
   m_Layer: 0
   m_Name: mixamorig:LeftLeg
   m_TagString: Untagged
@@ -694,7 +624,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0024467986, y: -0.40595406, z: -0.0051703993}
+  m_ConnectedAnchor: {x: -0.0024468284, y: -0.40595406, z: -0.005170459}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -728,28 +658,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4258945867136109994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127316564284476221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1155103734345037974
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +733,6 @@ GameObject:
   - component: {fileID: 3800994941164610732}
   - component: {fileID: 3800994941164610733}
   - component: {fileID: 3800994941164610723}
-  - component: {fileID: 2715750532867427334}
   m_Layer: 0
   m_Name: mixamorig:LeftForeArm
   m_TagString: Untagged
@@ -924,28 +831,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2715750532867427334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229360078465206929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1263226386656022933
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +843,6 @@ GameObject:
   - component: {fileID: 3800994941423395794}
   - component: {fileID: 3800994941423395804}
   - component: {fileID: 3800994941423395795}
-  - component: {fileID: 2681956758751762178}
   m_Layer: 0
   m_Name: mixamorig:LeftArm
   m_TagString: Untagged
@@ -1023,7 +907,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.18760858, y: 0.0884449, z: -0.018953713}
+  m_ConnectedAnchor: {x: -0.1876086, y: 0.0884449, z: -0.018953653}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1057,28 +941,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2681956758751762178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263226386656022933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1328213071289448382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1015,6 @@ GameObject:
   - component: {fileID: 3800994941583976184}
   - component: {fileID: 3800994941583976186}
   - component: {fileID: 3800994941583976185}
-  - component: {fileID: 2329505421968383556}
   m_Layer: 0
   m_Name: mixamorig:RightUpLeg
   m_TagString: Untagged
@@ -1218,7 +1079,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.091244526, y: -0.066564, z: -0.0005537919}
+  m_ConnectedAnchor: {x: 0.09124457, y: -0.066564, z: -0.0005537323}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1252,28 +1113,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2329505421968383556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507518488528722135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1540877567524407657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,7 +1541,6 @@ GameObject:
   - component: {fileID: 8520738901729759881}
   - component: {fileID: 3800994942396786022}
   - component: {fileID: 3800994942396786023}
-  - component: {fileID: 1279993479356698698}
   m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -1756,28 +1594,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.37360573, y: 0.41585502, z: 0.25215006}
   m_Center: {x: -0.004576072, y: 0.14136352, z: -0.039432406}
---- !u!114 &1279993479356698698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2701222491615680221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &2802244829707633908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,7 +2128,6 @@ GameObject:
   - component: {fileID: 3800994941476691769}
   - component: {fileID: 3800994941476691770}
   - component: {fileID: 3800994941476691768}
-  - component: {fileID: 8404232991460868577}
   m_Layer: 0
   m_Name: mixamorig:RightForeArm
   m_TagString: Untagged
@@ -2411,28 +2226,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8404232991460868577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620145257608628084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &4671221325043173959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,7 +2520,6 @@ GameObject:
   - component: {fileID: 3800994942392899486}
   - component: {fileID: 3800994942392899487}
   - component: {fileID: 3800994942392899485}
-  - component: {fileID: 8742008232527965982}
   m_Layer: 0
   m_Name: mixamorig:RightLeg
   m_TagString: Untagged
@@ -2791,7 +2583,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.002446795, y: -0.4059544, z: -0.0051452597}
+  m_ConnectedAnchor: {x: 0.00244681, y: -0.4059544, z: -0.0051452597}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2825,28 +2617,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8742008232527965982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5615428986479683977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &5981533163297307990
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,7 +3063,6 @@ GameObject:
   - component: {fileID: 3800994941709345570}
   - component: {fileID: 3800994941709345580}
   - component: {fileID: 3800994941709345571}
-  - component: {fileID: 6778178476710220169}
   m_Layer: 0
   m_Name: mixamorig:LeftUpLeg
   m_TagString: Untagged
@@ -3358,7 +3127,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.091244526, y: -0.066563986, z: -0.0005537969}
+  m_ConnectedAnchor: {x: -0.091244586, y: -0.066563986, z: -0.0005537373}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3392,28 +3161,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &6778178476710220169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7687422098629842716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &7689434128350791347
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3433,6 @@ GameObject:
   - component: {fileID: 3800994942532697074}
   - component: {fileID: 3800994942532697084}
   - component: {fileID: 3800994942532697075}
-  - component: {fileID: 4615672751083557560}
   m_Layer: 0
   m_Name: mixamorig:Spine2
   m_TagString: Untagged
@@ -3751,7 +3497,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0028213137, y: 0.34929103, z: -0.0426305}
+  m_ConnectedAnchor: {x: -0.0028213435, y: 0.34929103, z: -0.04263056}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3785,28 +3531,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4615672751083557560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8408767147540091939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952459a2f74f7ca40a0ab6c814c85631, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeathDepleted:
-    m_PersistentCalls:
-      m_Calls: []
-  maxHealth: 0
-  currentHealth: 0
-  healthText: {fileID: 0}
-  parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &8445354631271306158
 GameObject:
   m_ObjectHideFlags: 0

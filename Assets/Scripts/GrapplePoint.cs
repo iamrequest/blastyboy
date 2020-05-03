@@ -15,15 +15,15 @@ public class GrapplePoint : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         // Register the collision
-        //if (!hasCollided) {
+        if (!hasCollided) {
             hasCollided = true;
-            parentGrappler.RegisterForceGrabbable(gameObject);
+            parentGrappler.RegisterForceGrabbable(other.gameObject);
 
             // Stick to the target
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;
             transform.parent = other.gameObject.transform;
-        //}
+        }
     }
 
     public IEnumerator DestroySelfAfterDelay(float delay) {

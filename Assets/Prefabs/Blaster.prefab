@@ -248,8 +248,46 @@ MonoBehaviour:
   conserveMomentumOnGrappleStop: 1
   stopDistance: 0.2
   pullSpeed: 7
+  grappleDistanceDampening:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.32059216
+      value: 0.67421657
+      inSlope: 1.0371197
+      outSlope: 1.0371197
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.31117052
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  forceGrabProjectilePrefab: {fileID: 1481433941529272980, guid: 21ceb836318f17640b3a3abd52bf0b01,
+    type: 3}
+  currentForceGrabProjectile: {fileID: 0}
+  forceGrabProjectileVelocity: 10
   maxGrabDistance: 5
-  forceGrabRotationSpeed: 0
+  forceGrabSpeed: 7
+  forceGrabRotationSpeed: 2
   forceGrabDampening:
     serializedVersion: 2
     m_Curve:
@@ -263,15 +301,6 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.1480071
-      value: 0.0023305975
-      inSlope: 0.12419753
-      outSlope: 0.12419753
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 2
@@ -283,12 +312,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  forceGrabSpeed: 3
-  forceGrabProjectilePrefab: {fileID: 1481433941529272980, guid: 21ceb836318f17640b3a3abd52bf0b01,
-    type: 3}
-  currentForceGrabProjectile: {fileID: 0}
-  forceGrabProjectileVelocity: 10
-  initialForceGrabDistance: 1
+  initialForceGrabDistance: 2
+  minForceGrabDistance: 0.5
+  blasterVelocity: {x: 0, y: 0, z: 0}
+  forceGrabThrowVelocity: 1.5
+  relativePushPullAction:
+    actionPath: /actions/default/in/FireAction
+    needsReinit: 0
+  relativePushPull: 0
+  pushPullVelocity: 7
+  forceGrabBlasterStartPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &8252015401158380431
 PrefabInstance:
   m_ObjectHideFlags: 0
