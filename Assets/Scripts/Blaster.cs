@@ -16,7 +16,9 @@ public class Blaster : MonoBehaviour {
     public float projectileSpeed;
     public Vector3 firingDirection;
 
-    // Start is called before the first frame update
+    // TODO:
+    // - Alt fire mode when the rear handle is held
+    // - How to avoid triggering damage multiple times when multiple limbs are hit?
     void Start() {
         parentHand = GetComponentInParent<Hand>();
         grappler = GetComponent<Grappler>();
@@ -26,8 +28,12 @@ public class Blaster : MonoBehaviour {
 
     private void FireProjectile(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         // Can't shoot the gun when we're in the middle of force grabbing
-        if (grappler.IsCurrentlyGrappling()) return;
+        if (grappler.IsGrappleDeployed()) return;
 
+        FireProjectile(projectilePrefab, projectileSpeed);
+    }
+
+    public GameObject FireProjectile(GameObject projectilePrefab, float projectileSpeed) {
         // TODO: Object pool these projectiles
         // Spawn a projectile at the specified position and rotation
         GameObject projectile = Instantiate(projectilePrefab, spawnTransform.position, spawnTransform.rotation);
@@ -38,5 +44,7 @@ public class Blaster : MonoBehaviour {
 
         // TODO: Add random rotation?
         rb.AddTorque(1, 0, 0);
+
+        return projectile;
     }
 }

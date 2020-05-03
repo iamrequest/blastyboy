@@ -5,9 +5,10 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-public class SmoothLocomotion : MonoBehaviour {
+public class SmoothLocomotion : MonoBehaviour
+{
     public bool DRAW_DEBUG_RAYS;
-    public Grappler grappler;
+    public Grappler activeGrappler;
 
     [Header("VR")]
     [Tooltip("The SteamVR input source that we should consider when doing transform.forward for player locomotion")]
@@ -32,7 +33,7 @@ public class SmoothLocomotion : MonoBehaviour {
 
     private void move(SteamVR_Action_Vector2 fromAction, SteamVR_Input_Sources fromSource, Vector2 axis, Vector2 delta) {
         // Figure out the player's holding down
-        motion += forwardDirectionTransform.transform.right *  axis.x * speed;
+        motion += forwardDirectionTransform.transform.right * axis.x * speed;
         motion += forwardDirectionTransform.transform.forward * axis.y * speed;
 
         // Restrict movement to horizontal movement
@@ -44,7 +45,7 @@ public class SmoothLocomotion : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(DRAW_DEBUG_RAYS) {
+        if (DRAW_DEBUG_RAYS) {
             Debug.DrawRay(forwardDirectionTransform.position, forwardDirectionTransform.forward, Color.yellow);
             Debug.DrawRay(forwardDirectionTransform.position, forwardDirectionTransform.right, Color.red);
             Debug.DrawRay(forwardDirectionTransform.position, motion * speed, Color.green);
@@ -60,8 +61,10 @@ public class SmoothLocomotion : MonoBehaviour {
 
         // Apply conserved momentum from the grappler
         // Also, dampen the conserved momentum by gravity
-        motion += grappler.getLeftoverMomentum() * Time.deltaTime;
-        grappler.ApplyGravity(gravity);
+        if (activeGrappler != null) {
+            motion += activeGrappler.getLeftoverMomentum() * Time.deltaTime;
+            activeGrappler.ApplyGravity(gravity);
+        }
 
         // Perform the actual motion
         characterController.Move(motion);
@@ -69,7 +72,7 @@ public class SmoothLocomotion : MonoBehaviour {
         // Reset the motion for the next frame
         motion = Vector3.zero;
 
-        if(Input.GetKeyUp(KeyCode.G)) {
+        if (Input.GetKeyUp(KeyCode.G)) {
             // Make sure we're pointing at the right direction
             updateForwardDirectionTransform();
         }
@@ -79,14 +82,14 @@ public class SmoothLocomotion : MonoBehaviour {
     //  eg: When we change forwardDirectionSource to "left hand", we want to set forwardDirectionTransform to the transform of the left hand.
     void updateForwardDirectionTransform() {
         // Headset
-        if(forwardDirectionSource == SteamVR_Input_Sources.Head) {
+        if (forwardDirectionSource == SteamVR_Input_Sources.Head) {
             forwardDirectionTransform = Player.instance.hmdTransform;
             return;
         }
 
         // Loop through our hands, and attempt to assign the transform to one of the hands
-        foreach(Hand h in Player.instance.hands) {
-            if(h.handType.Equals(forwardDirectionSource)) {
+        foreach (Hand h in Player.instance.hands) {
+            if (h.handType.Equals(forwardDirectionSource)) {
                 forwardDirectionTransform = h.transform;
                 return;
             }

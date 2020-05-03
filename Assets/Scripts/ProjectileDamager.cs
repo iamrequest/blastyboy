@@ -13,10 +13,13 @@ public class ProjectileDamager : Damager {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        // If the thing we're colliding with can take damage, then inflict it.
-        Damagable damageable = collision.collider.GetComponent<Damagable>();
-        if (damageable != null) {
-            damageable.receiveDamage(damage);
+        // Minor cheat, since we're using non-damaging projectiles for force grab
+        if (damage > 0) {
+            // If the thing we're colliding with can take damage, then inflict it.
+            Damagable damageable = collision.collider.GetComponent<Damagable>();
+            if (damageable != null) {
+                damageable.receiveDamage(damage);
+            }
         }
 
         // Destroy the projectile after some delay

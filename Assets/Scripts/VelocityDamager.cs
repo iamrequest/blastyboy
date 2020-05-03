@@ -9,8 +9,8 @@ public class VelocityDamager : Damager {
     public float damageVelocity;
 
     private void OnCollisionEnter(Collision collision) {
-        // TODO: This isn't working
-        Debug.Log(collision.collider.name);
+        // TODO: This isn't working. The issue is related to colliders not triggering
+        //Debug.Log(collision.collider.name);
 
         if (collision.relativeVelocity.magnitude > damageVelocity) {
             // If the thing we're colliding with can take damage, then inflict it.

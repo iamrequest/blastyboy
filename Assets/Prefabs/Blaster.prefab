@@ -82,8 +82,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6784746389243733135}
   - component: {fileID: 778607245}
-  - component: {fileID: 8815252124405907504}
   - component: {fileID: 2582571926009247604}
+  - component: {fileID: 1322176089}
   m_Layer: 8
   m_Name: Blaster
   m_TagString: Untagged
@@ -124,34 +124,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1481433941529272980, guid: 9802c8cc1e98a2c43971ed42b268f6a7,
     type: 3}
   spawnTransform: {fileID: 658114023}
-  projectileSpeed: 5
+  projectileSpeed: 10
   firingDirection: {x: 0, y: 0, z: 1}
---- !u!114 &8815252124405907504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391076482578281415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b241715f48d5b4f986aa9bfdb829b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  drawGrabAction:
-    actionPath: /actions/default/in/GrabGrip
-    needsReinit: 0
-  doGrabAction:
-    actionPath: /actions/default/in/FireAction
-    needsReinit: 0
-  grabPoint: {fileID: 0}
-  maxGrabDistance: 5
-  grabbableLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  pullSpeed: 7
-  stopDistance: 0.2
 --- !u!120 &2582571926009247604
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -249,6 +223,72 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1322176089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5391076482578281415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74f0060a37eb0b40aa00668400acf6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motion: {x: 0, y: 0, z: 0}
+  characterController: {fileID: 0}
+  doGrabAction:
+    actionPath: /actions/default/in/GrabGrip
+    needsReinit: 0
+  grabPoint: {fileID: 0}
+  smoothLocomotion: {fileID: 0}
+  grabbableLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  conserveMomentumOnGrappleStop: 1
+  stopDistance: 0.2
+  pullSpeed: 7
+  maxGrabDistance: 5
+  forceGrabRotationSpeed: 0
+  forceGrabDampening:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.1480071
+      value: 0.0023305975
+      inSlope: 0.12419753
+      outSlope: 0.12419753
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  forceGrabSpeed: 3
+  forceGrabProjectilePrefab: {fileID: 1481433941529272980, guid: 21ceb836318f17640b3a3abd52bf0b01,
+    type: 3}
+  currentForceGrabProjectile: {fileID: 0}
+  forceGrabProjectileVelocity: 10
+  initialForceGrabDistance: 1
 --- !u!1001 &8252015401158380431
 PrefabInstance:
   m_ObjectHideFlags: 0
