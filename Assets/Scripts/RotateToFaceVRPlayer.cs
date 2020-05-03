@@ -9,12 +9,12 @@ public class RotateToFaceVRPlayer : MonoBehaviour {
 
     void Update() {
         if (constrainToYAxis) {
-            transform.LookAt(Player.instance.hmdTransform.position);
-        } else {
             // Figure out the direction from us to the player, and constrain that to the Y axis.
             transform.forward =
                 Vector3.ProjectOnPlane(transform.position - Player.instance.hmdTransform.position,
                                        Vector3.up).normalized;
+        } else {
+            transform.LookAt(Player.instance.hmdTransform.position);
         }
     }
 }
