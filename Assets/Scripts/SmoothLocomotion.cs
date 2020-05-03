@@ -50,8 +50,6 @@ public class SmoothLocomotion : MonoBehaviour
             Debug.DrawRay(forwardDirectionTransform.position, forwardDirectionTransform.right, Color.red);
             Debug.DrawRay(forwardDirectionTransform.position, motion * speed, Color.green);
         }
-
-        Debug.DrawRay(transform.position, Player.instance.hmdTransform.position, Color.yellow);
     }
 
     private void FixedUpdate() {

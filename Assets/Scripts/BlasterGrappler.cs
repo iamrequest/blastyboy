@@ -26,6 +26,7 @@ public class BlasterGrappler : Grappler {
 
     // How far away from the blaster should the target float?
     public float initialForceGrabDistance;
+    public float minForceGrabDistance;
     private float currentForceGrabDistance;
 
     // The target we're holding on to
@@ -193,6 +194,10 @@ public class BlasterGrappler : Grappler {
                 currentForceGrabDistance += pullPushDelta.magnitude * pushPullVelocity * Time.deltaTime;
             } else {
                 currentForceGrabDistance -= pullPushDelta.magnitude * pushPullVelocity * Time.deltaTime;
+            }
+
+            if (currentForceGrabDistance < minForceGrabDistance) {
+                currentForceGrabDistance = minForceGrabDistance;
             }
 
         }
