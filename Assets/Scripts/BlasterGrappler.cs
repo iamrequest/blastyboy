@@ -95,12 +95,17 @@ public class BlasterGrappler : Grappler {
             }
 
             DestroyCurrentGrapplePoint();
+
+            // If we have vertical momentum on the way up, give ourselves a little extra boost
+            if (fromAction.stateUp && motion.y > 0) {
+                motion.y += addedVerticalMomentum;
+            }
             smoothLocomotion.enabled = true;
             return;
         }
 
         // If this is the first time that we've pressed the grab button
-        if (fromAction.lastStateDown) {
+        if (fromAction.stateDown) {
             // If we haven't connected with anything yet, fire a projectile
             if (forceGrabbableTarget == null) {
                 DestroyCurrentGrapplePoint();
@@ -119,6 +124,8 @@ public class BlasterGrappler : Grappler {
                 if (forceGrabbableTarget != null) {
                     // -- This is a force-grabbable object, then pick it up
                     DoForceGrabDistance();
+
+                    // Not sure why this is needed, but smooth locomotion gets disabled without it.
                     smoothLocomotion.enabled = true;
                 } else {
                     // -- If we've collided with a wall, then grapple to it.

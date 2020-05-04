@@ -19,9 +19,14 @@ public class Grappler : MonoBehaviour {
 
     [Header("Grappling")]
     public LayerMask grabbableLayers;
-    public bool conserveMomentumOnGrappleStop;
     public float stopDistance, pullSpeed;
     public AnimationCurve grappleDistanceDampening;
+
+    [Tooltip("When the user lets go of a grapple, should they maintain their momentum?")]
+    public bool conserveMomentumOnGrappleStop;
+
+    [Tooltip("When the user lets go of a grapple, how much extra vertical boost should they get?")]
+    public float addedVerticalMomentum;
 
     // Start is called before the first frame update
     protected virtual void Start() {

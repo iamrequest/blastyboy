@@ -53,10 +53,10 @@ public class SmoothLocomotion : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        // TODO: Fix player height
+        // The character controller's bounding box reaches from the floor, to the player's eye position
         characterController.height = Player.instance.eyeHeight;
         characterController.center = new Vector3(Player.instance.hmdTransform.localPosition.x, 
-                                                 0, 
+                                                 Player.instance.hmdTransform.localPosition.y / 2,
                                                  Player.instance.hmdTransform.localPosition.z);
 
         // Apply gravity
