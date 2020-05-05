@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blaster Glow
+  m_Name: Blade Glow
   m_Shader: {fileID: -6465566751694194690, guid: d462a142b669a4c4f86fbc9f7fe8f81c,
     type: 3}
   m_ShaderKeywords: 
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1C7ED3C6: 1
+    - Vector1_1C7ED3C6: 0.3
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -78,9 +78,8 @@ Material:
     m_Colors:
     - Color_BE9E6BAC: {r: 0.9058824, g: 0, b: 0.26073518, a: 0}
     - Color_C87E8F2: {r: 2, g: 0.45064718, b: 0, a: 0}
-    - MainColor: {r: 1.396226, g: 0.7579515, b: 0, a: 1}
+    - MainColor: {r: 0, g: 0.23540904, b: 0.5660378, a: 1}
     - SubColor: {r: 0.860433, g: 0.4301591, b: 0.125818, a: 0}
-    - TilingDir: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

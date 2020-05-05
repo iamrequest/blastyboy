@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GrapplePoint : MonoBehaviour {
-    public BlasterGrappler parentGrappler;
+    public BlasterGrapplerOld parentGrappler;
     public Rigidbody rb;
     public float spawnTimestamp, lifespan;
     public bool hasCollided;

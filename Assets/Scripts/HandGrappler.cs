@@ -6,42 +6,59 @@ using Valve.VR;
 
 // TODO: Hand grapple isn't working
 public class HandGrappler : Grappler {
-    //protected GameObject grabPoint;
+    private Vector3 originalGrabPointLocalScale;
 
     protected override void Start() {
         base.Start();
         doGrabAction.AddOnUpdateListener(DoGrab, parentHand.handType);
+        originalGrabPointLocalScale = grabPoint.transform.localScale;
     }
 
     private void DoGrab(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
-        if (doGrabAction.trackedDeviceIndex != parentHand.GetDeviceIndex()) return;
-
-        // If the player lets go of the grab button
-        if (!newState) {
-            smoothLocomotion.enabled = true;
-            return;
-        }
-
-        // Test if the grab point is hovering anything
-        RaycastHit rayHit;
-
+        // TODO: This is causing issues when both hands are pressed
+        // TODO: Solution - move grab buttons to separate steamvr bool actions
+        //if (doGrabAction.trackedDeviceIndex != parentHand.GetDeviceIndex()) return;
 
         // If we're holding the grab button, and we're hovering a wall
-        if (newState &&
-            Physics.SphereCast(grabPoint.transform.position,
-                grabPoint.transform.localScale.x / 2,
-                Vector3.up,
-                out rayHit,
-                0.001f,
-                grabbableLayers)) {
-            smoothLocomotion.activeGrappler = this;
-            smoothLocomotion.enabled = false;
+        if (fromAction.stateDown) {
+            Collider[] collisions = Physics.OverlapSphere(grabPoint.transform.position,
+                grabPoint.transform.lossyScale.x / 2,
+                grabbableLayers);
 
-            // TODO: Need to anchor grabPoint to a wall
-            GrappleTo(parentHand.transform.position, grabPoint.transform.position);
-        } else {
-            smoothLocomotion.activeGrappler = this;
-            smoothLocomotion.enabled = false;
+            if (collisions.Length > 0) {
+                grabPoint.velocity = Vector3.zero;
+                grabPoint.isKinematic = true;
+                grabPoint.transform.parent = collisions[0].gameObject.transform;
+
+                OnGrappleStart();
+            }
         }
+
+        if (fromAction.state) {
+            if (isGrappling) {
+                GrappleTo(parentHand.transform.position, grabPoint.transform.position);
+            }
+        } else {
+            if (isGrappling) {
+                OnGrappleEnd();
+            }
+        }
+    }
+
+    protected override void OnGrappleStart() {
+        base.OnGrappleStart();
+
+        smoothLocomotion.enabled = false;
+        smoothLocomotion.activeGrappler = this;
+    }
+
+    protected override void OnGrappleEnd() {
+        base.OnGrappleEnd();
+
+        smoothLocomotion.enabled = true;
+
+        grabPoint.transform.parent = transform;
+        grabPoint.transform.localPosition = Vector3.zero;
+        grabPoint.transform.localScale = originalGrabPointLocalScale;
     }
 }

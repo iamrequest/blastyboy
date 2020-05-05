@@ -17,14 +17,14 @@ public class ForceGrabbableLimb : ForceGrabbable {
         FindParentLimbs();
     }
 
-    public override void OnGrab(BlasterGrappler grappler) {
+    public override void OnGrab(Grappler grappler) {
         base.OnGrab(grappler);
         rb.isKinematic = false;
 
         ragdollParent.isRagdollActive = true;
     }
 
-    public override void OnRelease(BlasterGrappler grappler) {
+    public override void OnRelease(Grappler grappler) {
         base.OnRelease(grappler);
         rb.isKinematic = false;
         ragdollParent.isRagdollActive = false;

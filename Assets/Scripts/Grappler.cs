@@ -4,8 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-// TODO: Refactor this solution so that I can use the player's hand as a grappler
-public class Grappler : MonoBehaviour {
+public abstract class Grappler : MonoBehaviour {
     protected Hand parentHand;
     protected Grappler otherGrappler;
     public Vector3 motion; // The current momentum applied by the grappler
@@ -13,14 +12,15 @@ public class Grappler : MonoBehaviour {
     [Header("Config")]
     public CharacterController characterController;
     public SteamVR_Action_Boolean doGrabAction;
-    public GameObject grabPoint;
+    public Rigidbody grabPoint;
     protected GameObject hoveredObject; // The object we're pointing the grappler at
     public SmoothLocomotion smoothLocomotion;
 
     [Header("Grappling")]
     public LayerMask grabbableLayers;
-    public float stopDistance, pullSpeed;
+    public float pullSpeed;
     public AnimationCurve grappleDistanceDampening;
+    public bool isGrappling;
 
     [Tooltip("When the user lets go of a grapple, should they maintain their momentum?")]
     public bool conserveMomentumOnGrappleStop;
@@ -39,14 +39,31 @@ public class Grappler : MonoBehaviour {
             motion = Vector3.zero;
         }
     }
+    protected virtual void OnGrappleStart() {
+        isGrappling = true;
+
+        // Conserve momentum between grapplers
+        if (otherGrappler != null) {
+            if (otherGrappler.isActiveAndEnabled) {
+                if (otherGrappler.isGrappling) {
+                    motion = otherGrappler.motion;
+                    otherGrappler.OnGrappleEnd();
+                }
+            }
+        }
+    }
+
+    protected virtual void OnGrappleEnd() { 
+        isGrappling = false;
+
+        if (conserveMomentumOnGrappleStop && motion.y > 0) {
+            motion.y += addedVerticalMomentum;
+        }
+    }
 
     // --------------------------------------------------------------------------------
     // Grapple 
     // --------------------------------------------------------------------------------
-    // TODO: Bug fixes:
-    //  - Player can pull themselves to a ceiling/wall, and pull themselves through
-    //  - At the point where the player is at the grapple point, it's choppy
-    //      - This is because the stopDistance is a firm cutoff
     public void GrappleTo(Vector3 fromPosition, Vector3 targetPosition) {
         Vector3 dirToTarget = targetPosition - fromPosition;
 

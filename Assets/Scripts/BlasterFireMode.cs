@@ -8,6 +8,7 @@ using Valve.VR.InteractionSystem;
 // No current use-case, so I'm not adding it right now.
 public abstract class BlasterFireMode : MonoBehaviour {
     protected Blaster parentBlaster;
+    public bool isBlockingGrapple;
 
     // The unity thing here is required to set HDR colors
     [ColorUsageAttribute(true,true)]
@@ -15,6 +16,7 @@ public abstract class BlasterFireMode : MonoBehaviour {
 
     protected virtual void Start() {
         parentBlaster = GetComponent<Blaster>();
+        isBlockingGrapple = false;
     }
 
     // On Enter / On Exit functions
@@ -23,5 +25,6 @@ public abstract class BlasterFireMode : MonoBehaviour {
 
     // SteamVR methods
     public abstract void OnStateDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource);
+    public abstract void OnStateUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource);
     //public abstract void OnStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState);
 }

@@ -15,7 +15,10 @@ public class BlasterFireMode_Projectile : BlasterFireMode {
 
     public override void OnStateDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         parentBlaster.audioSource.PlayOneShot(projectileShotAudio);
-        parentBlaster.FireProjectile(projectilePrefab, projectileSpeed);
+        parentBlaster.FireNewProjectile(projectilePrefab, projectileSpeed);
+    }
+
+    public override void OnStateUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
     }
 
     //public override void OnStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) { }

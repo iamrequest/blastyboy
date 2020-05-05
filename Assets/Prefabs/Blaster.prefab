@@ -82,10 +82,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6784746389243733135}
   - component: {fileID: 778607245}
-  - component: {fileID: 2582571926009247604}
   - component: {fileID: 6376830160170370785}
-  - component: {fileID: 4956526781723304045}
-  - component: {fileID: 1322176089}
+  - component: {fileID: 7710083111465641857}
+  - component: {fileID: 3340115597380206915}
   m_Layer: 8
   m_Name: Blaster
   m_TagString: Untagged
@@ -130,104 +129,9 @@ MonoBehaviour:
   offHandHoldArea: {fileID: 0}
   offHandReleaseDistance: 0
   fireModeSwitchAudioClip: {fileID: 0}
-  fireModes: []
---- !u!120 &2582571926009247604
-LineRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391076482578281415}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.0021881838
-        value: 0.033654727
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
+  fireModes:
+  - {fileID: 6376830160170370785}
+  - {fileID: 7710083111465641857}
 --- !u!114 &6376830160170370785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,12 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3536971fc848c4291c75198de531f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlockingGrapple: 0
   newMainColor: {r: 0, g: 0, b: 0, a: 0}
   projectilePrefab: {fileID: 1481433941529272980, guid: 9802c8cc1e98a2c43971ed42b268f6a7,
     type: 3}
   projectileSpeed: 10
   projectileShotAudio: {fileID: 8300000, guid: 2dafdbb14059d3b4a8a7f1ee9e8f7bee, type: 3}
---- !u!114 &4956526781723304045
+--- !u!114 &7710083111465641857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,15 +159,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5391076482578281415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3536971fc848c4291c75198de531f0, type: 3}
+  m_Script: {fileID: 11500000, guid: adcea312232f707478e6ba66edfc633f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlockingGrapple: 0
   newMainColor: {r: 0, g: 0, b: 0, a: 0}
-  projectilePrefab: {fileID: 1481433941529272980, guid: 9802c8cc1e98a2c43971ed42b268f6a7,
-    type: 3}
-  projectileSpeed: 20
-  projectileShotAudio: {fileID: 8300000, guid: 2dafdbb14059d3b4a8a7f1ee9e8f7bee, type: 3}
---- !u!114 &1322176089
+  blade: {fileID: 8505634171212813791}
+--- !u!114 &3340115597380206915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,20 +174,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5391076482578281415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e74f0060a37eb0b40aa00668400acf6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 52f692146179b7a40999aa5b1079d216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motion: {x: 0, y: 0, z: 0}
   characterController: {fileID: 0}
   doGrabAction:
-    actionPath: /actions/default/in/GrabGrip
+    actionPath: /actions/default/in/BlasterGrab
     needsReinit: 0
   grabPoint: {fileID: 0}
   smoothLocomotion: {fileID: 0}
   grabbableLayers:
     serializedVersion: 2
-    m_Bits: 1
-  stopDistance: 0.2
+    m_Bits: 8193
   pullSpeed: 7
   grappleDistanceDampening:
     serializedVersion: 2
@@ -299,15 +201,6 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.32059216
-      value: 0.67421657
-      inSlope: 1.0371197
-      outSlope: 1.0371197
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.31117052
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0
@@ -319,50 +212,46 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  isGrappling: 0
   conserveMomentumOnGrappleStop: 1
-  addedVerticalMomentum: 0
-  forceGrabProjectilePrefab: {fileID: 1481433941529272980, guid: 21ceb836318f17640b3a3abd52bf0b01,
+  addedVerticalMomentum: 1.5
+  grappleProjectilePrefab: {fileID: 7673732171263096041, guid: d291d740607819c44a096d8a63f7e426,
     type: 3}
-  currentForceGrabProjectile: {fileID: 0}
-  forceGrabProjectileVelocity: 10
-  maxGrabDistance: 5
-  grappleAudioClip: {fileID: 0}
+  grappleProjectileVelocity: 10
+  isGrappleProjectileDeployed: 0
+  relativePushPullAction:
+    actionPath: /actions/default/in/FireAction
+    needsReinit: 0
+  isForceGrabbing: 0
   forceGrabSpeed: 7
-  forceGrabRotationSpeed: 2
+  forceGrabRotationSpeed: 1
+  pushPullSpeed: 7
+  initialForceGrabDistance: 2
   forceGrabDampening:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
+      value: 0.025939941
       inSlope: 2
       outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  initialForceGrabDistance: 2
-  minForceGrabDistance: 0.5
-  blasterVelocity: {x: 0, y: 0, z: 0}
-  forceGrabThrowVelocity: 1.5
-  relativePushPullAction:
-    actionPath: /actions/default/in/FireAction
-    needsReinit: 0
-  relativePushPull: 0
-  pushPullVelocity: 7
-  forceGrabBlasterStartPosition: {x: 0, y: 0, z: 0}
+  mainLineRenderer: {fileID: 0}
 --- !u!1 &5557559761289774599
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,6 +501,101 @@ MonoBehaviour:
   previewPoseSelection: 0
   blendingBehaviours: []
   scale: 1
+--- !u!1001 &372664213373390038
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4035146684504776853}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0094
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7794532
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7794532
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0159394
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 150c29defdd80b44aa4c740537112cf8, type: 2}
+    - target: {fileID: -927199367670048503, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+        type: 3}
+      propertyPath: m_Name
+      value: blade2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2702f48ed8209e47a9f8aac58fd25cd, type: 3}
+--- !u!1 &8505634171212813791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: d2702f48ed8209e47a9f8aac58fd25cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 372664213373390038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8252015401158380431
 PrefabInstance:
   m_ObjectHideFlags: 0

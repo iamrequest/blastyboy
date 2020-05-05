@@ -7,17 +7,22 @@ using UnityEngine;
 public class VelocityDamager : Damager {
     [Tooltip("The minimum velocity that this gameobject must be going to inflict damage, upon collision.")]
     public float damageVelocity;
+    private Rigidbody rb;
 
-    private void OnCollisionEnter(Collision collision) {
-        // TODO: This isn't working. The issue is related to colliders not triggering
-        //Debug.Log(collision.collider.name);
+    private void Start() {
+        rb = GetComponent<Rigidbody>();
+    }
 
-        if (collision.relativeVelocity.magnitude > damageVelocity) {
+    // TODO: play with triggers and freeze rot/pos.
+    // Almost have it working, it's an issue with kinematic colliders
+    private void OnTriggerEnter(Collider other) {
+        if(rb.velocity.magnitude > damageVelocity) {
             // If the thing we're colliding with can take damage, then inflict it.
-            Damagable damageable = collision.collider.GetComponent<Damagable>();
+            Damagable damageable = other.GetComponent<Damagable>();
             if (damageable != null) {
                 damageable.receiveDamage(damage);
             }
         }
+        
     }
 }

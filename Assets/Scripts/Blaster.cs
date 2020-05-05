@@ -7,7 +7,7 @@ using Valve.VR.InteractionSystem;
 
 public class Blaster : MonoBehaviour {
     private Hand parentHand;
-    private Grappler grappler;
+    private BlasterGrappler grappler;
     public AudioSource audioSource;
     public MeshRenderer blasterMeshRenderer;
 
@@ -30,31 +30,37 @@ public class Blaster : MonoBehaviour {
     // - How to avoid triggering damage multiple times when multiple limbs are hit?
     void Start() {
         parentHand = GetComponentInParent<Hand>();
-        grappler = GetComponent<Grappler>();
+        grappler = GetComponent<BlasterGrappler>();
         audioSource = GetComponent<AudioSource>();
 
         // Primary hand SteamVR actions
         fireAction.AddOnStateDownListener(FireProjectile, parentHand.handType);
-        fireAction.AddOnStateDownListener(XR_SetNextPrimaryFireMode, parentHand.otherHand.handType);
+        fireAction.AddOnStateUpListener(PrimaryFireStateUp, parentHand.handType);
+        //fireAction.AddOnUpdateListener(PrimaryFireStateUpdate, parentHand.otherHand.handType);
 
         // Off-hand SteamVR actions
-        //fireAction.AddOnUpdateListener(PrimaryFireStateUpdate, parentHand.otherHand.handType);
+        fireAction.AddOnStateDownListener(XR_SetNextPrimaryFireMode, parentHand.otherHand.handType);
 
         fireModes[0].OnFireModeSelected();
         UpdateBlasterGlowMaterial();
     }
 
-    public GameObject FireProjectile(GameObject projectilePrefab, float projectileSpeed) {
+    public GameObject FireNewProjectile(GameObject projectilePrefab, float projectileSpeed) {
         // TODO: Object pool these projectiles
         // Spawn a projectile at the specified position and rotation
         GameObject projectile = Instantiate(projectilePrefab, spawnTransform.position, spawnTransform.rotation);
+        return FireExistingProjectile(projectile, projectileSpeed, true);
+    }
 
+    public GameObject FireExistingProjectile(GameObject projectile, float projectileSpeed, bool addTorque) {
         // Give the projectile forward force
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.AddRelativeForce(firingDirection * projectileSpeed, ForceMode.Impulse);
 
         // TODO: Add random rotation?
-        rb.AddTorque(1, 0, 0);
+        if (addTorque) {
+            rb.AddTorque(1, 0, 0);
+        }
 
         return projectile;
     }
@@ -62,17 +68,28 @@ public class Blaster : MonoBehaviour {
     // --------------------------------------------------------------------------------
     // SteamVR
     // --------------------------------------------------------------------------------
+    public bool IsPrimaryFireModeBlockingGrapple() {
+        return fireModes[primaryFireMode].isBlockingGrapple;
+    }
     private void FireProjectile(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         // Can't shoot the gun when we're in the middle of force grabbing
-        if (grappler.IsGrappleDeployed()) return;
+        if (grappler.isGrappleProjectileDeployed) return;
 
         // Pass the fire action to the active "Blaster Module"
         fireModes[primaryFireMode].OnStateDown(fromAction, fromSource);
     }
 
+    private void PrimaryFireStateUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
+        // Can't shoot the gun when we're in the middle of force grabbing
+        if (grappler.isGrappleProjectileDeployed) return;
+
+        // Pass the fire action to the active "Blaster Module"
+        fireModes[primaryFireMode].OnStateUp(fromAction, fromSource);
+    }
+
     private void PrimaryFireStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
         // Can't shoot the gun when we're in the middle of force grabbing
-        if (grappler.IsGrappleDeployed()) return;
+        if (grappler.isGrappleProjectileDeployed) return;
 
         // Pass the fire action to the active "Blaster Module"
         //fireModes[primaryFireMode].OnStateUpdate(fromAction, fromSource, newState);
