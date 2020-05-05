@@ -11,6 +11,11 @@ public class Damagable : MonoBehaviour {
 
     public int maxHealth, currentHealth;
 
+    // Since we have multiple damageable hitboxes for an enemy's limbs, we need to have invincibility frames
+    // This is mainly for the case where a projectile hits multiple limbs at the same time
+    private bool isInvincible;
+    public float invincibilityDuration;
+
     [Header("UI")]
     public TextMeshProUGUI healthText;
 
@@ -21,6 +26,9 @@ public class Damagable : MonoBehaviour {
     }
 
     virtual public void receiveDamage(int damage) {
+        if (isInvincible) return;
+        StartCoroutine(ApplyInvincibilityFrames());
+
         currentHealth -= damage;
         onDamaged.Invoke();
 
@@ -41,5 +49,11 @@ public class Damagable : MonoBehaviour {
                 healthText.enabled = false;
             }
         }
+    }
+
+    private IEnumerator ApplyInvincibilityFrames() {
+        this.isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        this.isInvincible = false;
     }
 }

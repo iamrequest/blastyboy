@@ -7,6 +7,7 @@ using Valve.VR.InteractionSystem;
 
 public class BlasterGrappler : Grappler {
     private Blaster blaster;
+    private AudioSource audioSource;
     private LineRenderer lineRenderer;
 
     [Header("Grappling Projectile")]
@@ -17,6 +18,7 @@ public class BlasterGrappler : Grappler {
 
     [Header("Grappling")]
     public float maxGrabDistance;
+    public AudioClip grappleAudioClip;
 
     [Header("Force Grab")]
     // Movement of the force grabbed object
@@ -47,6 +49,8 @@ public class BlasterGrappler : Grappler {
         base.Start();
         blaster = GetComponent<Blaster>();
         lineRenderer = GetComponent<LineRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = grappleAudioClip;
 
         //drawGrabAction.AddOnUpdateListener(DrawGrab, parentHand.handType);
         doGrabAction.AddOnUpdateListener(DoGrab, parentHand.handType);
@@ -88,6 +92,8 @@ public class BlasterGrappler : Grappler {
 
         // If the player lets go of the grab button
         if (!newState) {
+            //audioSource.Stop();
+
             // Let go of the force grab, if one's happening
             if (forceGrabbableTarget != null) {
                 forceGrabbableTarget.OnRelease(this);
@@ -120,6 +126,9 @@ public class BlasterGrappler : Grappler {
 
         // When the grapple point collided with the target...
         if (newState && currentForceGrabProjectile != null) {
+            //audioSource.Play();
+            //audioSource.loop = true;
+
             if (currentGrapplePoint.hasCollided) {
                 if (forceGrabbableTarget != null) {
                     // -- This is a force-grabbable object, then pick it up
@@ -223,6 +232,25 @@ public class BlasterGrappler : Grappler {
         forceGrabbableTarget.transform.rotation = Quaternion.Lerp(forceGrabbableTarget.transform.rotation,
                                                             blaster.spawnTransform.rotation,
                                                             forceGrabRotationSpeed * Time.deltaTime);
+
+        // TEST:
+        //  Apply the same motion to the parent limbs
+        ForceGrabbableLimb limb = forceGrabbableTarget as ForceGrabbableLimb;
+        if (limb != null) {
+            foreach (ForceGrabbableLimb parentLimb in limb.parentLimbs) {
+                // TODO: This will make all parent parts move towards the same pos
+                parentLimb.rb.MovePosition(floatPosition 
+                                            * forceGrabSpeed 
+                                            * forceGrabDampening.Evaluate(floatPositionDelta.magnitude)
+                                            * Time.deltaTime);
+
+                //parentLimb.transform.position = Vector3.MoveTowards(forceGrabbableTarget.transform.position,
+                //                                                        floatPosition,
+                //                                                        forceGrabSpeed 
+                //                                                            * forceGrabDampening.Evaluate(floatPositionDelta.magnitude)
+                //                                                            * Time.deltaTime);
+            }
+        }
     }
 
     private void SetRelativePushPullMode(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {

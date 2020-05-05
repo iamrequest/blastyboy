@@ -20,7 +20,7 @@ public class ForceGrabbable : MonoBehaviour {
 
 
     // Start is called before the first frame update
-    void Start() {
+    protected virtual void Start() {
         isGrabbed = false;
         rb = GetComponent<Rigidbody>();
     }
