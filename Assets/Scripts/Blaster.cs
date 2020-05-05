@@ -38,7 +38,7 @@ public class Blaster : MonoBehaviour {
         fireAction.AddOnStateDownListener(XR_SetNextPrimaryFireMode, parentHand.otherHand.handType);
 
         // Off-hand SteamVR actions
-        fireAction.AddOnUpdateListener(PrimaryFireStateUpdate, parentHand.otherHand.handType);
+        //fireAction.AddOnUpdateListener(PrimaryFireStateUpdate, parentHand.otherHand.handType);
 
         fireModes[0].OnFireModeSelected();
         UpdateBlasterGlowMaterial();
@@ -75,7 +75,7 @@ public class Blaster : MonoBehaviour {
         if (grappler.IsGrappleDeployed()) return;
 
         // Pass the fire action to the active "Blaster Module"
-        fireModes[primaryFireMode].OnStateUpdate(fromAction, fromSource, newState);
+        //fireModes[primaryFireMode].OnStateUpdate(fromAction, fromSource, newState);
     }
 
 

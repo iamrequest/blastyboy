@@ -41,20 +41,29 @@ public class RagdollEnemy : MonoBehaviour {
         // -- Initialize our limbs
         // UnityEvents are null when the component is created via AddComponent()
         // Solution: https://forum.unity.com/threads/unity-event-is-null-right-after-addcomponent.819402/#post-5427855
+        //
+        // The unity namespace isn't available during builds however, so we need to wrap it in compiler flags
+        // https://answers.unity.com/questions/576746/build-error-the-type-or-namespace-name-unityeditor.html
+#if UNITY_EDITOR
         SerializedObject so;
+#endif
         foreach (Rigidbody limbRigidbody in limbs) {
             DamageableChild dc = limbRigidbody.gameObject.AddComponent<DamageableChild>();
             dc.parentDamageable = GetComponent<Damagable>();
 
+#if UNITY_EDITOR
             so = new SerializedObject(dc);
             so.Update();
+#endif
 
 
             ForceGrabbableLimb fgl = limbRigidbody.gameObject.AddComponent<ForceGrabbableLimb>();
             fgl.ragdollParent = this;
 
+#if UNITY_EDITOR
             so = new SerializedObject(fgl);
             so.Update();
+#endif
         }
     }
 

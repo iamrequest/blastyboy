@@ -18,5 +18,5 @@ public class BlasterFireMode_Projectile : BlasterFireMode {
         parentBlaster.FireProjectile(projectilePrefab, projectileSpeed);
     }
 
-    public override void OnStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) { }
+    //public override void OnStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) { }
 }

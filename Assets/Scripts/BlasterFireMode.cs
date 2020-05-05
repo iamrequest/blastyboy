@@ -23,5 +23,5 @@ public abstract class BlasterFireMode : MonoBehaviour {
 
     // SteamVR methods
     public abstract void OnStateDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource);
-    public abstract void OnStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState);
+    //public abstract void OnStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState);
 }
