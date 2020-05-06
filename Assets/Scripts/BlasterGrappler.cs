@@ -33,6 +33,8 @@ public class BlasterGrappler : Grappler {
 
     [Header("Force Grab Line Renderer")]
     public LineRenderer mainLineRenderer;
+    //public LineRenderer subLineRenderer;
+    //public GameObject tempLineRendererTarget;
 
 
     protected override void Start() {
@@ -46,7 +48,6 @@ public class BlasterGrappler : Grappler {
     }
     protected override void Update() {
         base.Update();
-
     }
 
     private void InstantiateNewGrappleProjectile() {
@@ -266,5 +267,17 @@ public class BlasterGrappler : Grappler {
             mainLineRenderer.SetPosition(0, blaster.spawnTransform.position);
             mainLineRenderer.SetPosition(1, grappleProjectile.transform.position);
         }
+
+
+        // -- Render sub line renderers
+        //Vector3 lineRendererDelta = tempLineRendererTarget.transform.position - blaster.spawnTransform.position;
+
+        //subLineRenderer.SetPosition(0, blaster.spawnTransform.position);
+        //for (float segmentNum = 1f; segmentNum < subLineRenderer.positionCount; segmentNum++) {
+        //    float div = (segmentNum + 1) / (subLineRenderer.positionCount);
+        //    Vector3 pos = blaster.spawnTransform.position + (lineRendererDelta * div);
+
+        //    subLineRenderer.SetPosition(Mathf.FloorToInt(segmentNum), pos);
+        //}
     }
 }

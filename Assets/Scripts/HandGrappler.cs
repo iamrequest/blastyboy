@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-// TODO: Hand grapple isn't working
+// TODO: Add offset for where to respawn grapple point during onRelease()
 public class HandGrappler : Grappler {
     private Vector3 originalGrabPointLocalScale;
+    public Vector3 originalGrabPointPositionOffset;
 
     protected override void Start() {
         base.Start();
         doGrabAction.AddOnUpdateListener(DoGrab, parentHand.handType);
         originalGrabPointLocalScale = grabPoint.transform.localScale;
+        grabPoint.transform.localPosition += originalGrabPointPositionOffset;
     }
 
     private void DoGrab(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
@@ -58,7 +60,7 @@ public class HandGrappler : Grappler {
         smoothLocomotion.enabled = true;
 
         grabPoint.transform.parent = transform;
-        grabPoint.transform.localPosition = Vector3.zero;
+        grabPoint.transform.localPosition = originalGrabPointPositionOffset;
         grabPoint.transform.localScale = originalGrabPointLocalScale;
     }
 }
