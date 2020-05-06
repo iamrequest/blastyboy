@@ -375,7 +375,7 @@ PrefabInstance:
     - target: {fileID: 8466892634368674601, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
       propertyPath: bladeRetractDuration
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
@@ -1717,7 +1717,17 @@ PrefabInstance:
     - target: {fileID: 8244916751823094203, guid: c2adf06c216552a458fa3b5d313711fb,
         type: 3}
       propertyPath: isRagdollActiveOnStart
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244916751823094203, guid: c2adf06c216552a458fa3b5d313711fb,
+        type: 3}
+      propertyPath: baseIdleAnimationTimeDelay
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244916751823094203, guid: c2adf06c216552a458fa3b5d313711fb,
+        type: 3}
+      propertyPath: idleAnimationMaxTimeOffset
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
