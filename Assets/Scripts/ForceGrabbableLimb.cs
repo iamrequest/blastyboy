@@ -32,7 +32,7 @@ public class ForceGrabbableLimb : ForceGrabbable {
     }
 
     public override void OnRelease(BlasterGrappler grappler) {
-        base.OnRelease(grappler);
+        //base.OnRelease(grappler);
         ragdollParent.isRagdollActive = false;
     }
 

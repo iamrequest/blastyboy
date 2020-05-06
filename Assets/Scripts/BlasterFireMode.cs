@@ -9,6 +9,7 @@ using Valve.VR.InteractionSystem;
 public abstract class BlasterFireMode : MonoBehaviour {
     protected Blaster parentBlaster;
     public bool isBlockingGrapple;
+    public float transitionInDuration, transitionOutDuration;
 
     // The unity thing here is required to set HDR colors
     [ColorUsageAttribute(true,true)]

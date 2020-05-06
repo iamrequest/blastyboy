@@ -58,20 +58,25 @@ CapsuleCollider:
   m_Height: 0.06
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.01}
---- !u!114 &8268699107623022462
-MonoBehaviour:
+--- !u!95 &6092720066668353775
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118467288978838150}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8f26fbfacb3fc40ae8e99c14db115e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 3
-  damageVelocity: 0.1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23733240775082a4d9908f027b42c7ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5391076482578281415
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +134,7 @@ MonoBehaviour:
   offHandHoldArea: {fileID: 0}
   offHandReleaseDistance: 0
   fireModeSwitchAudioClip: {fileID: 0}
+  animator: {fileID: 0}
   fireModes:
   - {fileID: 6376830160170370785}
   - {fileID: 7710083111465641857}
@@ -145,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlockingGrapple: 0
+  transitionInDuration: 0
+  transitionOutDuration: 0
   newMainColor: {r: 0, g: 0, b: 0, a: 0}
   projectilePrefab: {fileID: 1481433941529272980, guid: 9802c8cc1e98a2c43971ed42b268f6a7,
     type: 3}
@@ -163,6 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlockingGrapple: 0
+  transitionInDuration: 0
+  transitionOutDuration: 0
   newMainColor: {r: 0, g: 0, b: 0, a: 0}
   blade: {fileID: 8505634171212813791}
 --- !u!114 &3340115597380206915
@@ -215,6 +225,7 @@ MonoBehaviour:
   isGrappling: 0
   conserveMomentumOnGrappleStop: 1
   addedVerticalMomentum: 1.5
+  blasterMesh: {fileID: 0}
   grappleProjectilePrefab: {fileID: 7673732171263096041, guid: d291d740607819c44a096d8a63f7e426,
     type: 3}
   grappleProjectileVelocity: 10
@@ -492,7 +503,7 @@ MonoBehaviour:
     type: 3}
   overridePreviewRightHandPrefab: {fileID: 1000010304998954, guid: 6def53d002137b747aec0b29551e0e25,
     type: 3}
-  skeletonMainPose: {fileID: 11400000, guid: c93adc987d538c1408abede3c8692f4e, type: 2}
+  skeletonMainPose: {fileID: 0}
   skeletonAdditionalPoses: []
   showLeftPreview: 0
   showRightPreview: 0

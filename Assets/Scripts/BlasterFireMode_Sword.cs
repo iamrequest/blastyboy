@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-// TODO: Sword collides with grapple point
-// TODO: Sword cannot release when grapple is active
 public class BlasterFireMode_Sword : BlasterFireMode {
     public GameObject blade;
     private MeshRenderer meshRenderer;
+
+    public float bladeRetractDuration;
+    private float lastBladeRetractionTime;
 
     protected override void Start() {
         base.Start();
@@ -16,18 +17,24 @@ public class BlasterFireMode_Sword : BlasterFireMode {
         newMainColor = meshRenderer.material.GetColor("MainColor");
     }
     public override void OnFireModeDeselected() {
-        blade.SetActive(false);
+        // If we've got the blade extended, add a bit of a delay before the next Fire Mode can shoot
+        transitionOutDuration = lastBladeRetractionTime - Time.time + bladeRetractDuration;
+        if (transitionOutDuration < 0) transitionOutDuration = 0;
+
+        parentBlaster.animator.SetBool("isBladeExtended", false);
     }
 
-    public override void OnFireModeSelected() {
+    public override void OnFireModeSelected() { 
+        lastBladeRetractionTime = Time.time;
     }
 
     public override void OnStateDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
-        blade.SetActive(true);
+        parentBlaster.animator.SetBool("isBladeExtended", true);
         isBlockingGrapple = true;
     }
     public override void OnStateUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
-        blade.SetActive(false);
+        parentBlaster.animator.SetBool("isBladeExtended", false);
+        lastBladeRetractionTime = Time.time;
         isBlockingGrapple = false;
     }
 }

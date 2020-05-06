@@ -20,9 +20,12 @@ public class Blaster : MonoBehaviour {
     public GameObject offHandHoldArea;
     public float offHandReleaseDistance;
 
-    public AudioClip fireModeSwitchAudioClip;
+    public AudioClip fireModeSwitchAudioClip, fireModeActivateFailClip;
+    public Animator animator;
     public List<BlasterFireMode> fireModes; // This acts as a list of of swappable modules for the blaster
+    private BlasterFireMode previousFireMode;
     private int primaryFireMode;
+    private float lastFireModeSwitch;
 
 
     // TODO:
@@ -41,6 +44,7 @@ public class Blaster : MonoBehaviour {
         // Off-hand SteamVR actions
         fireAction.AddOnStateDownListener(XR_SetNextPrimaryFireMode, parentHand.otherHand.handType);
 
+        lastFireModeSwitch = Time.time;
         fireModes[0].OnFireModeSelected();
         UpdateBlasterGlowMaterial();
     }
@@ -69,11 +73,17 @@ public class Blaster : MonoBehaviour {
     // SteamVR
     // --------------------------------------------------------------------------------
     public bool IsPrimaryFireModeBlockingGrapple() {
-        return fireModes[primaryFireMode].isBlockingGrapple;
+        return fireModes[primaryFireMode].isBlockingGrapple && IsTransitioningBetweenFireModes();
     }
     private void FireProjectile(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         // Can't shoot the gun when we're in the middle of force grabbing
         if (grappler.isGrappleProjectileDeployed) return;
+
+        // Can't shoot the gun if we're in the middle of transitioning
+        if (IsTransitioningBetweenFireModes()) {
+            audioSource.PlayOneShot(fireModeActivateFailClip);
+            return;
+        }
 
         // Pass the fire action to the active "Blaster Module"
         fireModes[primaryFireMode].OnStateDown(fromAction, fromSource);
@@ -82,6 +92,7 @@ public class Blaster : MonoBehaviour {
     private void PrimaryFireStateUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) {
         // Can't shoot the gun when we're in the middle of force grabbing
         if (grappler.isGrappleProjectileDeployed) return;
+        if (IsTransitioningBetweenFireModes()) return;
 
         // Pass the fire action to the active "Blaster Module"
         fireModes[primaryFireMode].OnStateUp(fromAction, fromSource);
@@ -90,6 +101,7 @@ public class Blaster : MonoBehaviour {
     private void PrimaryFireStateUpdate(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
         // Can't shoot the gun when we're in the middle of force grabbing
         if (grappler.isGrappleProjectileDeployed) return;
+        if (IsTransitioningBetweenFireModes()) return;
 
         // Pass the fire action to the active "Blaster Module"
         //fireModes[primaryFireMode].OnStateUpdate(fromAction, fromSource, newState);
@@ -113,8 +125,13 @@ public class Blaster : MonoBehaviour {
     }
 
     public void SetNextPrimaryFireMode() {
-        fireModes[primaryFireMode].OnFireModeDeselected();
+        lastFireModeSwitch = Time.time;
 
+        // Transition out of the prev fire mode
+        fireModes[primaryFireMode].OnFireModeDeselected();
+        previousFireMode = fireModes[primaryFireMode];
+
+        // Advance
         primaryFireMode += 1;
         primaryFireMode %= fireModes.Count;
 
@@ -124,6 +141,15 @@ public class Blaster : MonoBehaviour {
         // Update the material's color
         UpdateBlasterGlowMaterial();
         fireModes[primaryFireMode].OnFireModeSelected();
+    }
+
+    private bool IsTransitioningBetweenFireModes() {
+        float transitionDuration = fireModes[primaryFireMode].transitionInDuration;
+        if (previousFireMode != null) {
+            transitionDuration += previousFireMode.transitionOutDuration;
+        }
+
+        return Time.time < lastFireModeSwitch + transitionDuration;
     }
 
     private void UpdateBlasterGlowMaterial() {

@@ -13,7 +13,10 @@ public class Damagable : MonoBehaviour {
 
     // Since we have multiple damageable hitboxes for an enemy's limbs, we need to have invincibility frames
     // This is mainly for the case where a projectile hits multiple limbs at the same time
-    private bool isInvincible;
+    private bool m_isInvincible;
+    public virtual bool isInvincible {
+        get { return m_isInvincible;  }
+    }
     public float invincibilityDuration;
 
     [Header("UI")]
@@ -22,6 +25,7 @@ public class Damagable : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         currentHealth = maxHealth;
+        m_isInvincible = false;
         UpdateUI();
     }
 
@@ -52,8 +56,8 @@ public class Damagable : MonoBehaviour {
     }
 
     private IEnumerator ApplyInvincibilityFrames() {
-        this.isInvincible = true;
+        this.m_isInvincible = true;
         yield return new WaitForSeconds(invincibilityDuration);
-        this.isInvincible = false;
+        this.m_isInvincible = false;
     }
 }

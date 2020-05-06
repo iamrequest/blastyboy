@@ -41,7 +41,11 @@ public class ForceGrabbable : MonoBehaviour {
     }
     public virtual void OnRelease(BlasterGrappler grappler) {
         isGrabbed = false;
-        rb.useGravity = true;
+
+        // This caused an exception with limb grabbing, not sure why
+        if (rb != null) {
+            rb.useGravity = true;
+        }
 
         onRelease.Invoke();
     }

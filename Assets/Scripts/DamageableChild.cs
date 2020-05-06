@@ -7,6 +7,11 @@ using UnityEngine;
 //  Each collider should recieve damage, and report back to the main damageable parent.
 public class DamageableChild : Damagable {
     public Damagable parentDamageable;
+    public override bool isInvincible {
+        get {
+            return parentDamageable.isInvincible;
+        }
+    }
 
     // Whenever this child gameobject receives damage, pass it along the parent gameobject.
     //  It will be keeping track.

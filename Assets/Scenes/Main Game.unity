@@ -324,12 +324,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 481527666, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: damageVelocity
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 481527666, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: damage
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 481527666, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: playAudioOnDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481527666, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1101300795}
+    - target: {fileID: 481527666, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: onDamageAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7765fcf38ee478e4688260e96e55958c, type: 3}
+    - target: {fileID: 2269750717934204453, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1980481618}
+    - target: {fileID: 2269750717934204453, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: fireModeTransitionFailAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a70d7eec9ec2b18478ba18a5dff9f1e1, type: 3}
+    - target: {fileID: 2269750717934204453, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: fireModeActivateFailClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a70d7eec9ec2b18478ba18a5dff9f1e1, type: 3}
     - target: {fileID: 3541446898430356971, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
       propertyPath: blasterMesh
@@ -340,8 +367,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4b31e10a6d65d9e47805bc83d44ade69, type: 2}
-    m_RemovedComponents:
-    - {fileID: 7908202506859758550, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+    - target: {fileID: 8466892634368674601, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: transitionOutDuration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8466892634368674601, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: bladeRetractDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
 --- !u!1 &717772466
 GameObject:
@@ -956,6 +992,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020070944}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1101300795 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1322176090, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 299196023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192115938
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1036,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageVelocity: 1
+  playAudioOnDamage: 0
+  audioSource: {fileID: 0}
+  onDamageAudioClip: {fileID: 0}
 --- !u!65 &1192115940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1503,6 +1548,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 299196023}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1980481618
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980481616}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 23733240775082a4d9908f027b42c7ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &3800994941678847636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1510,6 +1574,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1046073422079910536, guid: c2adf06c216552a458fa3b5d313711fb,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046073422079910536, guid: c2adf06c216552a458fa3b5d313711fb,
+        type: 3}
+      propertyPath: invincibilityDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3800994940591733102, guid: c2adf06c216552a458fa3b5d313711fb,
         type: 3}
       propertyPath: m_ConnectedAnchor.x

@@ -22,14 +22,6 @@ public class RagdollEnemy : MonoBehaviour {
             animator.enabled = !value;
             foreach (Rigidbody limbRigidbody in limbs) {
                 limbRigidbody.isKinematic = !value;
-
-                // Testing this post: https://answers.unity.com/questions/685219/move-a-specific-part-of-a-ragdoll-and-the-rest-of.html
-                // Kinda works I think? Needs more work.
-                if (value) {
-                    limbRigidbody.drag = limbRigidbody.mass;
-                } else {
-                    limbRigidbody.drag = 0;
-                }
             }
 
             m_isRagdollActive = value;
