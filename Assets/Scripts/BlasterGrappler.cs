@@ -7,6 +7,7 @@ using Valve.VR.InteractionSystem;
 
 public class BlasterGrappler : Grappler {
     Blaster blaster;
+    public GameObject blasterMesh;
 
     [Header("Blaster Grapple")]
     public GameObject grappleProjectilePrefab;
@@ -45,6 +46,7 @@ public class BlasterGrappler : Grappler {
     }
     protected override void Update() {
         base.Update();
+
     }
 
     private void InstantiateNewGrappleProjectile() {
@@ -95,7 +97,7 @@ public class BlasterGrappler : Grappler {
             grabPoint.velocity = Vector3.zero;
 
             grabPoint.gameObject.SetActive(true);
-            grabPoint.AddRelativeForce(blaster.transform.forward * grappleProjectileVelocity, ForceMode.Impulse);
+            grabPoint.AddRelativeForce(blasterMesh.transform.forward * grappleProjectileVelocity, ForceMode.Impulse);
         }
 
         if (newState) {
@@ -193,7 +195,7 @@ public class BlasterGrappler : Grappler {
     public void DoForceGrabDistance() {
         // Find the point starting from the blaster, $forceGrabDistance meters away.
         //  The force grabbable object will hover there.
-        Vector3 floatPosition = blaster.spawnTransform.position + transform.forward * currentForceGrabDistance;
+        Vector3 floatPosition = blaster.spawnTransform.position + blasterMesh.transform.forward * currentForceGrabDistance;
 
         RecalculateForceGrabDistance();
         

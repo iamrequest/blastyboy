@@ -9,7 +9,6 @@ using UnityEngine.Events;
 public class ForceGrabbableLimb : ForceGrabbable {
     public UnityEvent onRagdoll;
     public RagdollEnemy ragdollParent;
-    public float originalDrag;
 
     private Rigidbody limbRigidbody;
 
@@ -51,7 +50,11 @@ public class ForceGrabbableLimb : ForceGrabbable {
         CharacterJoint characterJoint = delegateForceGrabTarget.gameObject.AddComponent<CharacterJoint>();
 
         // Serialize the newly created component.
-        // See RagdollEnemy for details
+        // UnityEvents are null when the component is created via AddComponent()
+        // Solution: https://forum.unity.com/threads/unity-event-is-null-right-after-addcomponent.819402/#post-5427855
+        //
+        // The unity namespace isn't available during builds however, so we need to wrap it in compiler flags
+        // https://answers.unity.com/questions/576746/build-error-the-type-or-namespace-name-unityeditor.html
 #if UNITY_EDITOR
         SerializedObject so;
         so = new SerializedObject(characterJoint);
