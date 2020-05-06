@@ -5,12 +5,9 @@ using UnityEngine;
 public class GrappleProjectile : MonoBehaviour {
     public BlasterGrappler parentGrappler;
 
-    private void Start() {
-    }
-
     private void OnTriggerEnter(Collider other) {
         // Register the collision
-        if (!parentGrappler.isGrappling) {
+        if (!parentGrappler.isGrappling && !parentGrappler.isForceGrabbing) {
             parentGrappler.OnGrappleProjectileCollision(other);
         }
     }

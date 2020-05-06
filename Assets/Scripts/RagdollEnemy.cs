@@ -12,12 +12,14 @@ using Valve.VR.InteractionSystem;
 public class RagdollEnemy : MonoBehaviour {
     public bool isRagdollActiveOnStart;
 
+    private Animator animator;
     public List<Rigidbody> limbs;
     private bool m_isRagdollActive;
 
     public bool isRagdollActive {
         get { return m_isRagdollActive;  }
         set {
+            animator.enabled = !value;
             foreach (Rigidbody limbRigidbody in limbs) {
                 limbRigidbody.isKinematic = !value;
 
@@ -36,6 +38,7 @@ public class RagdollEnemy : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        animator = GetComponent<Animator>();
         isRagdollActive = isRagdollActiveOnStart;
 
         // -- Initialize our limbs

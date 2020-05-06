@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4476171810526536263}
   - component: {fileID: 1193062965056493402}
   m_Layer: 9
-  m_Name: New Blaster Grapple Projectile
+  m_Name: Blaster Grapple Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentGrappler: {fileID: 0}
+  characterJoint: {fileID: 0}
 --- !u!54 &1193062965056493402
 Rigidbody:
   m_ObjectHideFlags: 0

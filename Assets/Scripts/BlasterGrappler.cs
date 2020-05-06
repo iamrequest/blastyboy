@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
@@ -55,6 +56,7 @@ public class BlasterGrappler : Grappler {
 
     private void ReleaseGrip() {
         isGrappleProjectileDeployed = false;
+        StopDrawingGrappleLighting();
 
         // If we're either in the middle of grappling, or shooting a grapple projectile
         if (grabPoint != null) {
@@ -115,18 +117,31 @@ public class BlasterGrappler : Grappler {
             return;
         }
 
-        // Stick to the target
-        grabPoint.velocity = Vector3.zero;
-        grabPoint.isKinematic = true;
-        grabPoint.transform.parent = other.gameObject.transform;
 
         // Test if we should grapple to the target, or force grab the target
         forceGrabbableTarget = other.GetComponent<ForceGrabbable>();
         if (forceGrabbableTarget == null) {
             // -- Grapple
+            grabPoint.velocity = Vector3.zero;
+            grabPoint.isKinematic = true;
+            grabPoint.transform.parent = other.gameObject.transform;
+
             OnGrappleStart();
         } else {
             // -- Force grab
+            ForceGrabbableLimb limb = forceGrabbableTarget as ForceGrabbableLimb;
+            if (limb) {
+                // Configure the character joint to stick to the target
+                limb.ConfigureDelegateForceGrabTarget(grappleProjectile);
+
+                limb.OnGrab(this);
+            } else {
+                // Stick to the target
+                grabPoint.velocity = Vector3.zero;
+                grabPoint.isKinematic = true;
+                grabPoint.transform.parent = other.gameObject.transform;
+            }
+
             OnForceGrabStart();
         }
     }
@@ -167,13 +182,12 @@ public class BlasterGrappler : Grappler {
     private void OnForceGrabEnd() {
         isGrappleProjectileDeployed = false;
 
+        forceGrabbableTarget.OnRelease(this);
+
         StopDrawingGrappleLighting();
         if (grabPoint != null) {
             Destroy(grabPoint.gameObject);
         }
-
-        forceGrabbableTarget.OnRelease(this);
-
     }
 
     public void DoForceGrabDistance() {
@@ -184,17 +198,17 @@ public class BlasterGrappler : Grappler {
         RecalculateForceGrabDistance();
         
         // Find the dir from the target to the float position
-        Vector3 floatPositionDelta = floatPosition - forceGrabbableTarget.transform.position;
+        Vector3 floatPositionDelta = forceGrabbableTarget.transform.position - floatPosition;
 
         // Float the object towards the float position
-        forceGrabbableTarget.transform.position = Vector3.MoveTowards(forceGrabbableTarget.transform.position,
+        forceGrabbableTarget.rb.transform.position = Vector3.MoveTowards(forceGrabbableTarget.rb.transform.position,
                                                                 floatPosition,
                                                                 forceGrabSpeed 
                                                                     * forceGrabDampening.Evaluate(floatPositionDelta.magnitude)
                                                                     * Time.deltaTime);
 
         // Rotate the object to match the blaster's rotation
-        forceGrabbableTarget.transform.rotation = Quaternion.Lerp(forceGrabbableTarget.transform.rotation,
+        forceGrabbableTarget.rb.transform.rotation = Quaternion.Lerp(forceGrabbableTarget.rb.transform.rotation,
                                                             blaster.spawnTransform.rotation,
                                                             forceGrabRotationSpeed * Time.deltaTime);
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,23 +11,29 @@ public class ForceGrabbableLimb : ForceGrabbable {
     public RagdollEnemy ragdollParent;
     public float originalDrag;
 
-    public List<ForceGrabbableLimb> parentLimbs;
+    private Rigidbody limbRigidbody;
+
+    private Vector3 m_delegateTargetPickupPosition;
+    public override Vector3 pickupPosition { 
+        get {
+            return m_delegateTargetPickupPosition;
+        }
+    }
 
     protected override void Start() {
         base.Start();
-        FindParentLimbs();
+        limbRigidbody = rb;
     }
 
-    public override void OnGrab(Grappler grappler) {
-        base.OnGrab(grappler);
-        rb.isKinematic = false;
+    public override void OnGrab(BlasterGrappler grappler) {
+        // base.OnGrab(grappler);
 
+        m_delegateTargetPickupPosition = rb.transform.position;
         ragdollParent.isRagdollActive = true;
     }
 
-    public override void OnRelease(Grappler grappler) {
+    public override void OnRelease(BlasterGrappler grappler) {
         base.OnRelease(grappler);
-        rb.isKinematic = false;
         ragdollParent.isRagdollActive = false;
     }
 
@@ -35,22 +42,22 @@ public class ForceGrabbableLimb : ForceGrabbable {
         onRagdoll.Invoke();
     }
 
-    private void FindParentLimbs() {
-        parentLimbs = new List<ForceGrabbableLimb>();
+    public void ConfigureDelegateForceGrabTarget(GrappleProjectile delegateForceGrabTarget) {
+        rb = delegateForceGrabTarget.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.isKinematic = true;
+        rb.freezeRotation = true;
 
-        // Starting from this gameobject, loop through each parent component of the enemy
-        // If there's a force grabbable limb, record it.
-        GameObject childGameObject = gameObject;
-        while (childGameObject != ragdollParent.gameObject && childGameObject != null) {
-            childGameObject = childGameObject.transform.parent.gameObject;
+        CharacterJoint characterJoint = delegateForceGrabTarget.gameObject.AddComponent<CharacterJoint>();
 
-            ForceGrabbableLimb limb = childGameObject.GetComponent<ForceGrabbableLimb>();
-            if (limb != null) {
-                // TEST
-                parentLimbs.Clear();
+        // Serialize the newly created component.
+        // See RagdollEnemy for details
+#if UNITY_EDITOR
+        SerializedObject so;
+        so = new SerializedObject(characterJoint);
+        so.Update();
+#endif
 
-                parentLimbs.Add(limb);
-            }
-        }
+        characterJoint.connectedBody = limbRigidbody;
     }
 }

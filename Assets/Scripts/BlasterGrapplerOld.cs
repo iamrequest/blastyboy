@@ -162,7 +162,7 @@ public class BlasterGrapplerOld : Grappler {
     private void ReleaseGrip() { 
         // Let go of the force grab, if one's happening
         if (forceGrabbableTarget != null) {
-            forceGrabbableTarget.OnRelease(this);
+            //forceGrabbableTarget.OnRelease(this);
             forceGrabbableTarget = null;
         }
 
@@ -190,7 +190,7 @@ public class BlasterGrapplerOld : Grappler {
         forceGrabbableTarget = target.GetComponentInParent<ForceGrabbable>();
         if (forceGrabbableTarget != null) {
             currentForceGrabDistance = initialForceGrabDistance;
-            forceGrabbableTarget.OnGrab(this);
+            //forceGrabbableTarget.OnGrab(this);
         }
     }
 
@@ -243,24 +243,6 @@ public class BlasterGrapplerOld : Grappler {
                                                             blaster.spawnTransform.rotation,
                                                             forceGrabRotationSpeed * Time.deltaTime);
 
-        // TEST:
-        //  Apply the same motion to the parent limbs
-        ForceGrabbableLimb limb = forceGrabbableTarget as ForceGrabbableLimb;
-        if (limb != null) {
-            foreach (ForceGrabbableLimb parentLimb in limb.parentLimbs) {
-                // TODO: This will make all parent parts move towards the same pos
-                parentLimb.rb.MovePosition(floatPosition 
-                                            * forceGrabSpeed 
-                                            * forceGrabDampening.Evaluate(floatPositionDelta.magnitude)
-                                            * Time.deltaTime);
-
-                //parentLimb.transform.position = Vector3.MoveTowards(forceGrabbableTarget.transform.position,
-                //                                                        floatPosition,
-                //                                                        forceGrabSpeed 
-                //                                                            * forceGrabDampening.Evaluate(floatPositionDelta.magnitude)
-                //                                                            * Time.deltaTime);
-            }
-        }
     }
 
     private void SetRelativePushPullMode(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {

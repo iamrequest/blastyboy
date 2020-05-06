@@ -11,8 +11,8 @@ public class ForceGrabbable : MonoBehaviour {
     public Rigidbody rb;
 
     // The position where we initialized the grab
-    public Vector3 m_pickupPosition;
-    public Vector3 pickupPosition { 
+    private Vector3 m_pickupPosition;
+    public virtual Vector3 pickupPosition { 
         get {
             return m_pickupPosition;
         }
@@ -32,14 +32,14 @@ public class ForceGrabbable : MonoBehaviour {
         }
     }
 
-    public virtual void OnGrab(Grappler grappler) {
+    public virtual void OnGrab(BlasterGrappler grappler) {
         isGrabbed = true;
         m_pickupPosition = transform.position;
         rb.useGravity = false;
 
         onGrab.Invoke();
     }
-    public virtual void OnRelease(Grappler grappler) {
+    public virtual void OnRelease(BlasterGrappler grappler) {
         isGrabbed = false;
         rb.useGravity = true;
 
