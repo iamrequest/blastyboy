@@ -32,8 +32,16 @@ public class ShootingState : BaseState {
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
+    [Header("State Management")]
+    private float lastSeenTime;
+    private Vector3 lastSeenPosition;
+    public float giveUpDelay;
+    public BaseState giveUpState;
+
 
     public override void OnStateEnter(BaseState previousState) {
+        if (target == null) target = parentFSM.target;
+
         lastShotFired = Time.time - gunshotCooldown + initialGunshotDelay;
         //domHandIK.weight = 1;
         //subHandIK.weight = 1;
@@ -51,6 +59,7 @@ public class ShootingState : BaseState {
     }
 
     private void Update() {
+        // Ease our weights into an aiming pose
         if (domHandIK.weight < 1) {
             float addedWeight = Mathf.Min(animationRigActivateSpeed * Time.deltaTime, 1 - domHandIK.weight);
 
@@ -59,14 +68,26 @@ public class ShootingState : BaseState {
             headLookAtConstraint.weight += addedWeight;
         }
 
+        // Update the last seen time/position of the player
+        bool targetIsInSight = vision.IsInSight(target.transform.position, "Player");
+        if (targetIsInSight) {
+            lastSeenPosition = target.transform.position;
+            lastSeenTime = Time.time;
+        }
+
+        // If it's been long enough since we've last seen the player, give up
+        if (Time.time > lastSeenTime + giveUpDelay) {
+            parentFSM.TransitionTo(giveUpState);
+        }
+
         // Rotate to face the target, projected onto the x/z plane
-        Vector3 dirToTarget = Vector3.ProjectOnPlane(target.transform.position - parentFSM.agentTransform.position, Vector3.up);
+        Vector3 dirToTarget = Vector3.ProjectOnPlane(lastSeenPosition - parentFSM.agentTransform.position, Vector3.up);
         parentFSM.agentTransform.rotation = Quaternion.LookRotation(dirToTarget);
 
         // Move the head rotation, and the IK arms
         MoveIKTargets();
 
-        if (Time.time > lastShotFired + gunshotCooldown) {
+        if (Time.time > lastShotFired + gunshotCooldown && targetIsInSight) {
             parentFSM.animator.SetTrigger("doGunshot");
 
             audioSource.PlayOneShot(gunshotAudioClip);
@@ -82,9 +103,9 @@ public class ShootingState : BaseState {
 
     private void MoveIKTargets() {
         // Rotate the head to look at the target
-        headLookAtConstraint.data.sourceObjects[0].transform.position = target.transform.position;
+        headLookAtConstraint.data.sourceObjects[0].transform.position = lastSeenPosition;
 
-        Vector3 eyeToTargetDelta = target.transform.position - vision.eyePosition.position;
+        Vector3 eyeToTargetDelta = lastSeenPosition - vision.eyePosition.position;
         if (DEBUG) {
             Debug.DrawRay(gunBarrelTransform.position, eyeToTargetDelta, Color.red);
         }

@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class ForceGrabbableLimb : ForceGrabbable {
     public UnityEvent onRagdoll;
     public RagdollEnemy ragdollParent;
-
+    public FiniteStateMachine parentFSM;
     private Rigidbody limbRigidbody;
 
     private Vector3 m_delegateTargetPickupPosition;
@@ -28,12 +28,12 @@ public class ForceGrabbableLimb : ForceGrabbable {
         // base.OnGrab(grappler);
 
         m_delegateTargetPickupPosition = rb.transform.position;
-        ragdollParent.isRagdollActive = true;
+        parentFSM.TransitionTo(parentFSM.ragdollState);
     }
 
     public override void OnRelease(BlasterGrappler grappler) {
         //base.OnRelease(grappler);
-        ragdollParent.isRagdollActive = false;
+        parentFSM.ragdollState.OnRelease();
     }
 
 

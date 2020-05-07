@@ -11,8 +11,9 @@ public class IdleState : BaseState {
     public float idleAnimationMaxTimeOffset;
     private float lastIdleAnimationTime, idleAnimationtimeDelayWithOffset;
 
-    // Start is called before the first frame update
-    void Start() {
+
+    public override void OnStateEnter(BaseState previousState) {
+        if (target == null) target = parentFSM.target;
         CalculateIdleOffsetDelay();
     }
 

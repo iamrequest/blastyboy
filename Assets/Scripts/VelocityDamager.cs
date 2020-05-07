@@ -23,7 +23,6 @@ public class VelocityDamager : Damager {
         Vector3 deltaVelocity = (transform.position - previousPosition) * Time.deltaTime;
 
         if(deltaVelocity.magnitude > damageVelocity) {
-
             // If the thing we're colliding with can take damage, then inflict it.
             Damagable damageable = other.GetComponent<Damagable>();
             if (damageable != null) {

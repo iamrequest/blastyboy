@@ -26,6 +26,20 @@ public class ProjectileDamager : Damager {
         DestroySelf();
     }
 
+    private void OnTriggerEnter(Collider other) {
+        // Minor cheat, since we're using non-damaging projectiles for force grab
+        if (damage > 0) {
+            // If the thing we're colliding with can take damage, then inflict it.
+            Damagable damageable = other.GetComponent<Damagable>();
+            if (damageable != null) {
+                damageable.receiveDamage(damage);
+            }
+        }
+
+        // Destroy the projectile after some delay
+        DestroySelf();
+    }
+
     private void DestroySelf() {
         Destroy(gameObject);
     }

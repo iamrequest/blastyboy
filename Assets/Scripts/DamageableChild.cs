@@ -17,7 +17,8 @@ public class DamageableChild : Damagable {
     //  It will be keeping track.
     public override void receiveDamage(int damage) {
         // Just in-case we want to keep track of damage for this child, process damage here.
-        base.receiveDamage(damage);
+        // Currently disabled because I'm accessing FSM in the parent, and I don't have time to config in the children
+        //base.receiveDamage(damage);
 
         // Pass damage on to the parent as well.
         parentDamageable.receiveDamage(damage);

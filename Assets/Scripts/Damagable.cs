@@ -9,6 +9,10 @@ public class Damagable : MonoBehaviour {
     public UnityEvent onDamaged;
     public UnityEvent onHeathDepleted;
 
+    [Header("Enemy AI")]
+    public FiniteStateMachine fsm;
+    public ShootingState shootState;
+
     public int maxHealth, currentHealth;
 
     // Since we have multiple damageable hitboxes for an enemy's limbs, we need to have invincibility frames
@@ -41,6 +45,12 @@ public class Damagable : MonoBehaviour {
         // Test if we're out of health
         if (currentHealth <= 0) {
             onHeathDepleted.Invoke();
+
+            if (fsm != null) fsm.TransitionTo(fsm.ragdollState);
+        } else {
+            if (fsm != null && fsm.currentState != shootState) {
+                fsm.TransitionTo(shootState);
+            }
         }
     }
 

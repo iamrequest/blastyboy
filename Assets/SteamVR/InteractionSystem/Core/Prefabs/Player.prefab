@@ -1792,7 +1792,7 @@ MonoBehaviour:
   smoothLocomotion: {fileID: 1185223918}
   grabbableLayers:
     serializedVersion: 2
-    m_Bits: 8193
+    m_Bits: 139264
   pullSpeed: 5
   grappleDistanceDampening:
     serializedVersion: 2
@@ -1821,6 +1821,7 @@ MonoBehaviour:
   isGrappling: 0
   conserveMomentumOnGrappleStop: 1
   addedVerticalMomentum: 1.5
+  originalGrabPointPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &2049374965
 GameObject:
   m_ObjectHideFlags: 0

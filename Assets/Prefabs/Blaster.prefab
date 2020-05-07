@@ -360,7 +360,7 @@ MonoBehaviour:
   smoothLocomotion: {fileID: 0}
   grabbableLayers:
     serializedVersion: 2
-    m_Bits: 8193
+    m_Bits: 139264
   pullSpeed: 7
   grappleDistanceDampening:
     serializedVersion: 2
