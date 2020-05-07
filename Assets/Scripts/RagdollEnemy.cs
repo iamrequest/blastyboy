@@ -17,13 +17,8 @@ public class RagdollEnemy : MonoBehaviour {
     private bool m_isRagdollActive;
 
     [Header("States")]
-    private bool isShootingAtPlayer;
+    private FiniteStateMachine fsm;
 
-    [Header("Animation")]
-    [Tooltip("How long on average should the enemy wait before performing an idle flair animation? (ie: Kicking the ground)")]
-    public float baseIdleAnimationTimeDelay;
-    public float idleAnimationMaxTimeOffset;
-    private float lastIdleAnimationTime, idleAnimationtimeDelayWithOffset;
 
     public bool isRagdollActive {
         get { return m_isRagdollActive; }
@@ -39,52 +34,24 @@ public class RagdollEnemy : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        fsm = GetComponent<FiniteStateMachine>();
         animator = GetComponent<Animator>();
         isRagdollActive = isRagdollActiveOnStart;
-
-        CalculateIdleOffsetDelay();
     }
 
     private void Update() {
         if (!isRagdollActive) {
-            if (isShootingAtPlayer) {
-                OnPlayerEngagedUpdate();
-            } else {
-                // Idle animation flavor
-                // After a delay, play one of two idle animations
-                if (Time.time > lastIdleAnimationTime + idleAnimationtimeDelayWithOffset) {
-                    // 50/50 chance of looking around, vs kicking the ground
-                    // Could be cleaner/more robust, but this is a minor flavor addition, and I don't have a lot of time left.
-                    if (Random.Range(0, 1) > .5) {
-                        animator.SetTrigger("isIdleKicking");
-                    } else {
-                        animator.SetTrigger("isIdleLooking");
-                    }
-
-                    CalculateIdleOffsetDelay();
-                }
-            }
         }
     }
 
     // --------------------------------------------------------------------------------
     // Enemy AI
     // --------------------------------------------------------------------------------
-    public void CalculateIdleOffsetDelay() {
-        lastIdleAnimationTime = Time.time;
-        idleAnimationtimeDelayWithOffset = lastIdleAnimationTime
-                                           + baseIdleAnimationTimeDelay
-                                           + Random.Range(-idleAnimationMaxTimeOffset, idleAnimationMaxTimeOffset);
-    }
 
     private void OnPlayerEngage() {
         animator.SetBool("isShooting", true);
-        isShootingAtPlayer = true;
     }
     private void OnPlayerDisengage() {
         animator.SetBool("isShooting", false);
-        isShootingAtPlayer = false;
     }
-
-    private void OnPlayerEngagedUpdate() { }
 }
