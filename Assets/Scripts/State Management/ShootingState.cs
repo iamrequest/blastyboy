@@ -9,13 +9,13 @@ public class ShootingState : BaseState {
     public AudioSource audioSource;
     public AudioClip gunshotAudioClip;
 
-
     public GameObject target;
 
     [Header("Animation Rigs")]
     public MultiAimConstraint headLookAtConstraint;
     public TwoBoneIKConstraint domHandIK, subHandIK;
     public GameObject domHandIKTarget, subHandIKTarget;
+    public float animationRigActivateSpeed; // This determines how fast the animation rig weights will transition from 0 to 1 
 
     public float domHandDistanceFromEye;
     public Vector3 domHandRotationOffset;
@@ -35,9 +35,9 @@ public class ShootingState : BaseState {
 
     public override void OnStateEnter(BaseState previousState) {
         lastShotFired = Time.time - gunshotCooldown + initialGunshotDelay;
-        domHandIK.weight = 1;
-        subHandIK.weight = 1;
-        headLookAtConstraint.weight = 1;
+        //domHandIK.weight = 1;
+        //subHandIK.weight = 1;
+        //headLookAtConstraint.weight = 1;
 
         parentFSM.animator.SetBool("isAiming", true);
     }
@@ -51,6 +51,14 @@ public class ShootingState : BaseState {
     }
 
     private void Update() {
+        if (domHandIK.weight < 1) {
+            float addedWeight = Mathf.Min(animationRigActivateSpeed * Time.deltaTime, 1 - domHandIK.weight);
+
+            domHandIK.weight += addedWeight;
+            subHandIK.weight += addedWeight;
+            headLookAtConstraint.weight += addedWeight;
+        }
+
         // Rotate to face the target, projected onto the x/z plane
         Vector3 dirToTarget = Vector3.ProjectOnPlane(target.transform.position - parentFSM.agentTransform.position, Vector3.up);
         parentFSM.agentTransform.rotation = Quaternion.LookRotation(dirToTarget);
