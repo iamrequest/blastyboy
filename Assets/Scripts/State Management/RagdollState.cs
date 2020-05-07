@@ -5,7 +5,14 @@ using UnityEngine;
 public class RagdollState : BaseState {
     public RagdollEnemy ragdollEnemy;
     public Damagable damageable;
-    public BaseState nextStateAfterRagdoll;
+    public ShootingState shootState;
+
+    private bool isForceGrabbed;
+    private float timeLastForceGrabbed;
+    public float ragdollReleaseDelay;
+    public float minDistanceFromGround;
+    public LayerMask groundCheckLayerMask;
+    public float getUpDelay;
 
     public override void OnStateEnter(BaseState previousState) { 
         ragdollEnemy.isRagdollActive = true;
@@ -15,10 +22,31 @@ public class RagdollState : BaseState {
         ragdollEnemy.isRagdollActive = false;
         parentFSM.animator.SetTrigger("doGetUpFromBack");
     }
+    public void OnGrab() {
+        isForceGrabbed = true;
+        timeLastForceGrabbed = Time.time;
+    }
 
     public void OnRelease() {
-        if (damageable.currentHealth > 0) {
-            parentFSM.TransitionTo(nextStateAfterRagdoll);
+        isForceGrabbed = false;
+    }
+
+    private void Update() {
+        // Release the force grab after a duration of being released
+        if (!isForceGrabbed) {
+            // Make sure we're still alive
+            if (damageable.currentHealth > 0) {
+                // If we've been let go for a sufficient amount of time
+                if (Time.time > timeLastForceGrabbed + ragdollReleaseDelay) {
+                    // Make sure we're grounded
+                    RaycastHit rayHit;
+
+                    if (Physics.Raycast(ragdollEnemy.hips.transform.position, Vector3.up * -1, out rayHit, minDistanceFromGround, groundCheckLayerMask)) {
+                        parentFSM.TransitionTo(shootState);
+                        shootState.SpotTarget(shootState.target.transform.position);
+                    }
+                }
+            }
         }
     }
 }

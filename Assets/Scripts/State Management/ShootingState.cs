@@ -37,15 +37,16 @@ public class ShootingState : BaseState {
     private Vector3 lastSeenPosition;
     public float giveUpDelay;
     public BaseState giveUpState;
+    public float rotationSpeed;
 
 
     public override void OnStateEnter(BaseState previousState) {
         if (target == null) target = parentFSM.target;
 
         lastShotFired = Time.time - gunshotCooldown + initialGunshotDelay;
-        //domHandIK.weight = 1;
-        //subHandIK.weight = 1;
-        //headLookAtConstraint.weight = 1;
+
+        // If we just got up from a ragdoll state, give us enough time to stand up before shooting
+        if (previousState == parentFSM.ragdollState) lastShotFired += parentFSM.ragdollState.getUpDelay;
 
         parentFSM.animator.SetBool("isAiming", true);
     }
@@ -82,7 +83,7 @@ public class ShootingState : BaseState {
 
         // Rotate to face the target, projected onto the x/z plane
         Vector3 dirToTarget = Vector3.ProjectOnPlane(lastSeenPosition - parentFSM.agentTransform.position, Vector3.up);
-        parentFSM.agentTransform.rotation = Quaternion.LookRotation(dirToTarget);
+        parentFSM.agentTransform.rotation = Quaternion.Lerp(parentFSM.agentTransform.rotation, Quaternion.LookRotation(dirToTarget), rotationSpeed * Time.deltaTime);
 
         // Move the head rotation, and the IK arms
         MoveIKTargets();
@@ -127,5 +128,10 @@ public class ShootingState : BaseState {
             - (domHandIKTarget.transform.right * subHandPositionOffset.x);
         
         subHandIKTarget.transform.rotation = domHandIKTarget.transform.rotation * Quaternion.Euler(subHandRotationOffset);
+    }
+
+    public void SpotTarget(Vector3 lastSeenPosition) {
+        this.lastSeenPosition = lastSeenPosition;
+        lastSeenTime = Time.time;
     }
 }

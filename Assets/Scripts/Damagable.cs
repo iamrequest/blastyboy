@@ -48,8 +48,15 @@ public class Damagable : MonoBehaviour {
 
             if (fsm != null) fsm.TransitionTo(fsm.ragdollState);
         } else {
-            if (fsm != null && fsm.currentState != shootState) {
-                fsm.TransitionTo(shootState);
+            if (fsm != null) {
+                if (fsm.currentState != fsm.ragdollState) {
+                    fsm.TransitionTo(shootState);
+                }
+
+                // If we haven't already spotted the enemy for the first time, record their current position
+                if (!shootState.vision.IsInSight(shootState.target.transform.position, "Player")) {
+                    shootState.SpotTarget(shootState.target.transform.position);
+                }
             }
         }
     }

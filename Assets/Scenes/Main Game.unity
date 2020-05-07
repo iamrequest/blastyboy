@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 1020070948}
   - component: {fileID: 1020070947}
   - component: {fileID: 1020070946}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,6 +1484,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 871651148, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
+      propertyPath: getUpDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5160621411618849308, guid: c2adf06c216552a458fa3b5d313711fb,
         type: 3}
       propertyPath: m_Name

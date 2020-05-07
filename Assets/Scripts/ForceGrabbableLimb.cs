@@ -29,6 +29,7 @@ public class ForceGrabbableLimb : ForceGrabbable {
 
         m_delegateTargetPickupPosition = rb.transform.position;
         parentFSM.TransitionTo(parentFSM.ragdollState);
+        parentFSM.ragdollState.OnGrab();
     }
 
     public override void OnRelease(BlasterGrappler grappler) {

@@ -333,6 +333,7 @@ MonoBehaviour:
   bulletSpeed: 4
   giveUpDelay: 10
   giveUpState: {fileID: 871651145}
+  rotationSpeed: 3
 --- !u!114 &871651148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +350,12 @@ MonoBehaviour:
   vision: {fileID: 313997234}
   ragdollEnemy: {fileID: 8244916751823094203}
   damageable: {fileID: 1046073422079910536}
-  nextStateAfterRagdoll: {fileID: 871651145}
+  shootState: {fileID: 871651147}
+  ragdollReleaseDelay: 2
+  minDistanceFromGround: 0.4
+  groundCheckLayerMask:
+    serializedVersion: 2
+    m_Bits: 24576
 --- !u!1 &945604372
 GameObject:
   m_ObjectHideFlags: 0
