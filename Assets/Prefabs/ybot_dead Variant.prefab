@@ -27,14 +27,6 @@ PrefabInstance:
       propertyPath: enterState
       value: 
       objectReference: {fileID: 8505257068665193286}
-    - target: {fileID: 871651147, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
-      propertyPath: vision
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 871651148, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
-      propertyPath: vision
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 945604372, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -235,7 +227,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 313997234, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
     - {fileID: 313997236, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
     - {fileID: 313997237, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}
     - {fileID: 871651145, guid: c2adf06c216552a458fa3b5d313711fb, type: 3}

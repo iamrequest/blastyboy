@@ -28,9 +28,7 @@ public class RagdollEnemy : MonoBehaviour {
             ragdollEndPosition = hips.transform.position;
 
             animator.enabled = !value;
-            foreach (Rigidbody limbRigidbody in limbs) {
-                limbRigidbody.isKinematic = !value;
-            }
+            SetKinematic(!value);
 
             // If we're transitioning out of ragdoll mode
             if (m_isRagdollActive && !value) {
@@ -49,5 +47,11 @@ public class RagdollEnemy : MonoBehaviour {
     void Start() {
         animator = GetComponent<Animator>();
         isRagdollActive = isRagdollActiveOnStart;
+    }
+
+    public void SetKinematic(bool value) {
+        foreach (Rigidbody limbRigidbody in limbs) {
+            limbRigidbody.isKinematic = value;
+        }
     }
 }

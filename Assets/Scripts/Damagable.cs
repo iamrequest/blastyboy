@@ -49,7 +49,7 @@ public class Damagable : MonoBehaviour {
             if (fsm != null) fsm.TransitionTo(fsm.ragdollState);
         } else {
             if (fsm != null) {
-                if (fsm.currentState != fsm.ragdollState) {
+                if (fsm.currentState != shootState && fsm.currentState != fsm.ragdollState) {
                     fsm.TransitionTo(shootState);
                 }
 

@@ -327,6 +327,8 @@ MonoBehaviour:
   subHandPositionOffset: {x: -0.03, y: 0.06, z: 0.09}
   gunshotCooldown: 2
   initialGunshotDelay: 1
+  randomGunshotDelay: 0
+  maxRandomGunshotDelay: 2
   gunBarrelTransform: {fileID: 673748975}
   bulletPrefab: {fileID: 5143516520128721676, guid: b7495f2f0a43519419577e238d72fb3a,
     type: 3}
@@ -357,6 +359,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 24576
   getUpDelay: 0
+  ragdollDisableDistance: 10
 --- !u!1 &945604372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,8 +3719,8 @@ MonoBehaviour:
   visibleLayers:
     serializedVersion: 2
     m_Bits: 60672
-  visionDistance: 7
-  visionRadius: 30
+  visionDistance: 15
+  visionRadius: 60
 --- !u!114 &313997236
 MonoBehaviour:
   m_ObjectHideFlags: 0

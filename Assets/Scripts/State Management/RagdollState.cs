@@ -13,6 +13,7 @@ public class RagdollState : BaseState {
     public float minDistanceFromGround;
     public LayerMask groundCheckLayerMask;
     public float getUpDelay;
+    public float ragdollDisableDistance;
 
     public override void OnStateEnter(BaseState previousState) { 
         ragdollEnemy.isRagdollActive = true;
@@ -46,6 +47,9 @@ public class RagdollState : BaseState {
                         shootState.SpotTarget(shootState.target.transform.position);
                     }
                 }
+            } else {
+                // If we're far from the player, set isKinematic to save frames
+                ragdollEnemy.SetKinematic(vision.DistanceToTarget(parentFSM.target.transform.position) > ragdollDisableDistance);
             }
         }
     }

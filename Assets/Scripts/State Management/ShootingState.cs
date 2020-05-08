@@ -26,6 +26,7 @@ public class ShootingState : BaseState {
     [Header("Gunplay")]
     public float gunshotCooldown;
     public float initialGunshotDelay; // Delay that the agent must wait before firing their gun for the first time
+    public float randomGunshotDelay, maxRandomGunshotDelay ; 
     private float lastShotFired;
 
     public Transform gunBarrelTransform;
@@ -42,8 +43,9 @@ public class ShootingState : BaseState {
 
     public override void OnStateEnter(BaseState previousState) {
         if (target == null) target = parentFSM.target;
+        randomGunshotDelay = Random.Range(0, maxRandomGunshotDelay);
 
-        lastShotFired = Time.time - gunshotCooldown + initialGunshotDelay;
+        lastShotFired = Time.time - gunshotCooldown + initialGunshotDelay + randomGunshotDelay;
 
         // If we just got up from a ragdoll state, give us enough time to stand up before shooting
         if (previousState == parentFSM.ragdollState) lastShotFired += parentFSM.ragdollState.getUpDelay;
@@ -88,7 +90,7 @@ public class ShootingState : BaseState {
         // Move the head rotation, and the IK arms
         MoveIKTargets();
 
-        if (Time.time > lastShotFired + gunshotCooldown && targetIsInSight) {
+        if (Time.time > lastShotFired + gunshotCooldown + randomGunshotDelay && targetIsInSight) {
             parentFSM.animator.SetTrigger("doGunshot");
 
             audioSource.PlayOneShot(gunshotAudioClip);
@@ -99,6 +101,7 @@ public class ShootingState : BaseState {
             bulletRb.AddForce(gunBarrelTransform.transform.forward * bulletSpeed, ForceMode.Impulse);
 
             lastShotFired = Time.time;
+            randomGunshotDelay = Random.Range(0, maxRandomGunshotDelay);
         }
     }
 
