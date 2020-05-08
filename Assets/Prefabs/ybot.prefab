@@ -889,12 +889,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &441934694560185274
 GameObject:
@@ -1228,12 +1229,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &679016723888449702
 GameObject:
@@ -1518,12 +1520,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1155103734345037974
 GameObject:
@@ -1746,12 +1749,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1263226386656022933
 GameObject:
@@ -1911,12 +1915,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1328213071289448382
 GameObject:
@@ -2138,12 +2143,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &1540877567524407657
 GameObject:
@@ -2646,12 +2652,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!114 &1675431399980248938
 MonoBehaviour:
@@ -3362,12 +3369,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &4671221325043173959
 GameObject:
@@ -3582,12 +3590,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 871651147}
   maxHealth: 10
   currentHealth: 0
   invincibilityDuration: 0.3
   healthText: {fileID: 6064115012074484227}
+  disableUIOnDeath: 1
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 871651147}
 --- !u!95 &313997230
 Animator:
   serializedVersion: 3
@@ -4002,12 +4011,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &5981533163297307990
 GameObject:
@@ -4601,12 +4611,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &7689434128350791347
 GameObject:
@@ -5026,12 +5037,13 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 871651146}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 871651146}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 1046073422079910536}
 --- !u!1 &8445354631271306158
 GameObject:

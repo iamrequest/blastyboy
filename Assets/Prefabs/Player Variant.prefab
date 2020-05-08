@@ -79,12 +79,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  fsm: {fileID: 0}
-  shootState: {fileID: 0}
   maxHealth: 3
   currentHealth: 0
+  audioSource: {fileID: 1146587317602255056}
+  onDamagedAudio: {fileID: 8300000, guid: 1899f026450f53a4bb727f5ac6850567, type: 3}
+  onDeadAudio: {fileID: 8300000, guid: d05f0e8ec8289ae419d2da0c36aa622e, type: 3}
   invincibilityDuration: 0.2
   healthText: {fileID: 5556735307460138121}
+  disableUIOnDeath: 0
+  fsm: {fileID: 0}
+  shootState: {fileID: 0}
 --- !u!136 &1889977718
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -117,12 +121,16 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 0}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 0}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 6575298292603847033}
 --- !u!114 &896303858
 MonoBehaviour:
@@ -142,12 +150,16 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  fsm: {fileID: 0}
-  shootState: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
+  disableUIOnDeath: 0
+  fsm: {fileID: 0}
+  shootState: {fileID: 0}
   parentDamageable: {fileID: 6575298292603847033}
 --- !u!1001 &1146587318638366346
 PrefabInstance:
@@ -771,6 +783,12 @@ PrefabInstance:
 --- !u!1 &1146587318638471968 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1146587318638366346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1146587317602255056 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1322176090, guid: dc06161b6d97feb419f45f03b62e14b9,
     type: 3}
   m_PrefabInstance: {fileID: 1146587318638366346}
   m_PrefabAsset: {fileID: 0}

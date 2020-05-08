@@ -11,11 +11,10 @@ public class Damagable : MonoBehaviour {
     public UnityEvent onDamaged;
     public UnityEvent onHeathDepleted;
 
-    [Header("Enemy AI")]
-    public FiniteStateMachine fsm;
-    public ShootingState shootState;
-
     public int maxHealth, currentHealth;
+    public AudioSource audioSource;
+    public AudioClip onDamagedAudio;
+    public AudioClip onDeadAudio;
 
     // Since we have multiple damageable hitboxes for an enemy's limbs, we need to have invincibility frames
     // This is mainly for the case where a projectile hits multiple limbs at the same time
@@ -27,6 +26,12 @@ public class Damagable : MonoBehaviour {
 
     [Header("UI")]
     public TextMeshProUGUI healthText;
+    public bool disableUIOnDeath;
+
+    [Header("Enemy AI")]
+    public FiniteStateMachine fsm;
+    public ShootingState shootState;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -47,9 +52,16 @@ public class Damagable : MonoBehaviour {
         // Test if we're out of health
         if (currentHealth <= 0) {
             onHeathDepleted.Invoke();
+            if (audioSource != null && onDeadAudio != null) {
+                audioSource.PlayOneShot(onDeadAudio);
+            }
 
             if (fsm != null) fsm.TransitionTo(fsm.ragdollState);
         } else {
+            if (audioSource != null && onDamagedAudio != null) {
+                audioSource.PlayOneShot(onDamagedAudio);
+            }
+
             if (fsm != null) {
                 if (fsm.currentState != shootState && fsm.currentState != fsm.ragdollState) {
                     fsm.TransitionTo(shootState);
@@ -69,7 +81,9 @@ public class Damagable : MonoBehaviour {
             healthText.text = currentHealth.ToString();
 
             if (currentHealth <= 0) {
-                healthText.enabled = false;
+                if (disableUIOnDeath) {
+                    healthText.enabled = false;
+                }
             }
         }
     }
