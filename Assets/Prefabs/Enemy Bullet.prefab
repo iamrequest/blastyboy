@@ -16,6 +16,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &-5910839747480187602
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5143516520128721676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0.015}
 --- !u!96 &243957713
 TrailRenderer:
   serializedVersion: 2
@@ -137,19 +150,6 @@ MonoBehaviour:
   damage: 1
   lifespan: 3
   selfDestructAfterLifespan: 1
---- !u!65 &-5910839747480187602
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5143516520128721676}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.02, z: 0.03}
-  m_Center: {x: 0, y: 0, z: 0.015}
 --- !u!1001 &3765180882771470853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: bde2c45c9760d3547a6d769ff9b06522,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bde2c45c9760d3547a6d769ff9b06522, type: 3}

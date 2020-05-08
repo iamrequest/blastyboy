@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.SceneManagement;
+using Valve.VR;
 
 public class Damagable : MonoBehaviour {
     [Header("Health")]
@@ -76,5 +78,14 @@ public class Damagable : MonoBehaviour {
         this.m_isInvincible = true;
         yield return new WaitForSeconds(invincibilityDuration);
         this.m_isInvincible = false;
+    }
+
+    public void RestartLevel() {
+        SteamVR_LoadLevel.Begin(SceneManager.GetActiveScene().name);
+        currentHealth = maxHealth;
+    }
+    public void LoadLevel(string levelName) {
+        SteamVR_LoadLevel.Begin(levelName);
+        currentHealth = maxHealth;
     }
 }
