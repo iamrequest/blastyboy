@@ -12,7 +12,7 @@ Of course, please excuse my spaghetti. Game jams be like that
 Here's a high level list of things used to make this game, that might be of interest:
 * Unity, SteamVR 
 * Finite State Machine (idle state, shoot state, ragdoll state)
-* Inverse kinematics 
+* Animation Rig inverse kinematics 
   * In the Shoot State, enemies aim their gun towards the player, independent of the base aiming animation. The enemies also will rotate their heads to face the player. 
   * This was necessary the case when the player is above or below the enemy. It wouldn't look good if they were trying to shoot the player, while aiming way below them!
 * Simple ragdoll enemies (switching back and forth between kinematic animations with IK, and non-kinematic ragdoll)
