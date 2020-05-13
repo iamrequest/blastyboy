@@ -69,11 +69,11 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 6575298292603847033}
-        m_MethodName: 
+        m_MethodName: UpdateUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -779,7 +779,7 @@ PrefabInstance:
     - target: {fileID: 8543729909837006041, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8837917455152049840, guid: dc06161b6d97feb419f45f03b62e14b9,
         type: 3}
