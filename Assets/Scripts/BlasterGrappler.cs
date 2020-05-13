@@ -105,7 +105,12 @@ public class BlasterGrappler : Grappler {
             if (isGrappling) {
                 GrappleTo(blaster.spawnTransform.position, grabPoint.position);
             } else if (isForceGrabbing) {
-                DoForceGrabDistance();
+                // If the target dissapeared on us, let go
+                if (forceGrabbableTarget == null) {
+                    ReleaseGrip();
+                } else {
+                    DoForceGrabDistance();
+                }
             }
         }
     }

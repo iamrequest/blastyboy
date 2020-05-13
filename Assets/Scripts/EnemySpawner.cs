@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Valve.VR.InteractionSystem;
 
 public class EnemySpawner : MonoBehaviour {
     private const bool DEBUG = true;
     public bool isGameActive;
+    public TextMeshProUGUI isGameActiveUI;
+    public TextMeshProUGUI maxNumEnemiesUI;
 
     [Header("Enemy Management")]
     public GameObject enemyPrefab;
@@ -27,6 +31,7 @@ public class EnemySpawner : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         lastSpawnTime = Time.time;
+        maxNumEnemiesUI.text = "Max Num Enemies: " + maxNumberOfActiveEnemies;
     }
 
     // Update is called once per frame
@@ -133,6 +138,9 @@ public class EnemySpawner : MonoBehaviour {
         }
     }
 
+    public void SetGameStatus() {
+        SetGameStatus(!isGameActive);
+    }
     public void SetGameStatus(bool isGameActive) {
         if (!isGameActive) {
             foreach (GameObject enemy in activeEnemies) {
@@ -142,9 +150,20 @@ public class EnemySpawner : MonoBehaviour {
 
             numberOfActiveEnemies = 0;
             numberOfAliveEnemies = 0;
+            isGameActiveUI.text = "Game stopped";
         } else {
             lastSpawnTime = Time.time;
+            isGameActiveUI.text = "Game is active";
         }
+
+        // Attempt to heal the player
+        Damagable d = Player.instance.GetComponent<Damagable>();
+        if (d != null) {
+            d.currentHealth = d.maxHealth;
+            d.UpdateUI();
+        }
+
+
         this.isGameActive = isGameActive;
     }
 
@@ -161,5 +180,16 @@ public class EnemySpawner : MonoBehaviour {
                 RegisterDeadEnemy(activeEnemies[numberOfActiveEnemies - 1]);
             }
         }
+    }
+
+    public void AddMaxEnemyCount() {
+        maxNumberOfActiveEnemies++;
+        maxNumEnemiesUI.text = "Max Num Enemies: " + maxNumberOfActiveEnemies;
+    }
+    public void SubMaxEnemyCount() {
+        if (maxNumberOfActiveEnemies > 0) {
+            maxNumberOfActiveEnemies--;
+        }
+        maxNumEnemiesUI.text = "Max Num Enemies: " + maxNumberOfActiveEnemies;
     }
 }

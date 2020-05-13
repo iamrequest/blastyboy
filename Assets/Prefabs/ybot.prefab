@@ -891,6 +891,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -1231,6 +1234,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -1522,6 +1528,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -1751,6 +1760,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -1917,6 +1929,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -2145,6 +2160,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -2654,6 +2672,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -3371,6 +3392,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -3590,8 +3614,11 @@ MonoBehaviour:
   onHeathDepleted:
     m_PersistentCalls:
       m_Calls: []
-  maxHealth: 10
+  maxHealth: 6
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0.3
   healthText: {fileID: 6064115012074484227}
   disableUIOnDeath: 1
@@ -4013,6 +4040,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -4193,7 +4223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &565378362733213448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4613,6 +4643,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
@@ -5039,6 +5072,9 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 0
   currentHealth: 0
+  audioSource: {fileID: 0}
+  onDamagedAudio: {fileID: 0}
+  onDeadAudio: {fileID: 0}
   invincibilityDuration: 0
   healthText: {fileID: 0}
   disableUIOnDeath: 0
